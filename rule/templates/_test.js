@@ -8,13 +8,13 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var eslintTester = require("../../../lib/tests/eslintTester");
+var eslintTester = require("eslint-tester");
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-eslintTester.addRuleTest("<%= ruleId %>", {
+eslintTester.addRuleTest("lib/rules/<%= ruleId %>", {
 
     valid: [
 
