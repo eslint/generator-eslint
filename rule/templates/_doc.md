@@ -1,4 +1,4 @@
-# <%= desc %>
+# <%= desc %> (<%= ruleId %>)
 
 Please describe the origin of the rule here.
 
