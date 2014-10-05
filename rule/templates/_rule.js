@@ -1,6 +1,7 @@
 /**
  * @fileoverview <%= desc %>
  * @author <%= userName %>
+ * @copyright 2014 <%= userName %>. All rights reserved.
  */
 "use strict";
 
