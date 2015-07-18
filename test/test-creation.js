@@ -2,6 +2,7 @@
 "use strict";
 
 var path    = require("path");
+var assert = require('yeoman-generator').assert;
 var helpers = require("yeoman-generator").test;
 
 
@@ -34,8 +35,8 @@ describe("eslint generator", function () {
             invalidCode: "var x;"
         });
         this.rule.options["skip-install"] = true;
-        this.rule.run({}, function () {
-            helpers.assertFiles(expected);
+        this.rule.run(function () {
+            assert.file(expected);
             done();
         });
     });
