@@ -1,9 +1,24 @@
+/**
+ * @fileoverview Rule generator tests
+ * @author Nicholas C. Zakas
+ * @copyright 2014 Nicholas C. Zakas. All rights reserved.
+ * See LICENSE file in root directory for full license.
+ */
+
 /*global describe, beforeEach, it*/
 "use strict";
 
-var path    = require("path");
-var helpers = require("yeoman-generator").test;
+//------------------------------------------------------------------------------
+// Requirements
+//------------------------------------------------------------------------------
 
+var path    = require("path"),
+    helpers = require("yeoman-generator").test,
+    assert  = require("yeoman-generator").assert;
+
+//------------------------------------------------------------------------------
+// Tests
+//------------------------------------------------------------------------------
 
 describe("eslint generator", function () {
     beforeEach(function (done) {
@@ -34,8 +49,8 @@ describe("eslint generator", function () {
             invalidCode: "var x;"
         });
         this.rule.options["skip-install"] = true;
-        this.rule.run({}, function () {
-            helpers.assertFiles(expected);
+        this.rule.run(function () {
+            assert.file(expected);
             done();
         });
     });
