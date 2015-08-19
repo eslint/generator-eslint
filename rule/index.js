@@ -84,6 +84,7 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         this.invalidCode = props.invalidCode;
         this.desc = props.desc;
         this.userName = props.userName;
+        this.year = (new Date()).getFullYear();
 
         cb();
 
