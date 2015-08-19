@@ -11,7 +11,11 @@
 //------------------------------------------------------------------------------
 
 var rule = require("../../../lib/rules/<%= ruleId %>"),
+<% if (target === "eslint") { %>
     RuleTester = require("../../../lib/testers/rule-tester");
+<% } else { %>
+    RuleTester = require("eslint").RuleTester;
+<% } %>
 
 //------------------------------------------------------------------------------
 // Tests

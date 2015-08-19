@@ -17,13 +17,13 @@ var yeoman = require("yeoman-generator");
 //------------------------------------------------------------------------------
 
 /**
- * Determines if a given ruleId is valid. This is used by the prompt system.
- * @param {string} ruleId The rule ID to check.
+ * Determines if a given pluginId is valid. This is used by the prompt system.
+ * @param {string} pluginId The rule ID to check.
  * @returns {boolean|string} True if valid, a string with an error message if not.
  * @private
  */
-function isRuleId(ruleId) {
-    if (/^(?:[a-z]+(?:\-[a-z]+)*)$/.test(ruleId)) {
+function isPluginId(pluginId) {
+    if (/^(?:[a-z]+(?:\-[a-z]+)*)$/.test(pluginId)) {
         return true;
     } else {
         return "Rule ID must be all lowercase with dashes as separators.";
@@ -50,13 +50,13 @@ function isRequired(value) {
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator(args, options, config) {
+var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator(args, options, config) {
 	yeoman.generators.Base.apply(this, arguments);
 };
 
-util.inherits(ESLintRuleGenerator, yeoman.generators.Base);
+util.inherits(ESLintPluginGenerator, yeoman.generators.Base);
 
-ESLintRuleGenerator.prototype.askFor = function askFor() {
+ESLintPluginGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
     var prompts = [{
@@ -64,33 +64,29 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         name: "userName",
         message: "What is your name?"
     }, {
-        type: "list",
-        name: "target",
-        message: "Where will this rule be published?",
-        choices: [
-            { name: "ESLint Core", value: "eslint" },
-            { name: "ESLint Plugin", value: "plugin" }
-        ]
-    }, {
         type: "input",
-        name: "ruleId",
-        message: "What is the rule ID?",
-        validate: isRuleId
+        name: "pluginId",
+        message: "What is the plugin ID?",
+        validate: isPluginId
     }, {
         type: "input",
         name: "desc",
-        message: "Type a short description of this rule:",
+        message: "Type a short description of this plugin:",
         validate: isRequired
     }, {
-        type: "input",
-        name: "invalidCode",
-        message: "Type a short example of the code that will fail:",
+        type: "checkbox",
+        name: "hasRules",
+        message: "Does this plugin contain custom ESLint rules?"
+    }, {
+        type: "checkbox",
+        name: "hasProcessors",
+        message: "Does this plugin contain one or more processors?"
     }];
 
     this.prompt(prompts, function (props) {
-        this.ruleId = props.ruleId;
-        this.invalidCode = props.invalidCode;
-        this.target = props.target;
+        this.pluginId = props.pluginId.replace("eslint-plugin-", "");
+        this.hasRules = props.hasRules;
+        this.hasProcessors = props.hasProcessors;
         this.desc = props.desc;
         this.userName = props.userName;
         this.year = (new Date()).getFullYear();
@@ -102,9 +98,23 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
 
 };
 
-ESLintRuleGenerator.prototype.generate = function generate() {
+ESLintPluginGenerator.prototype.generate = function generate() {
 
-    this.template("_doc.md", "docs/rules/" + this.ruleId + ".md");
-    this.template("_rule.js", "lib/rules/" + this.ruleId + ".js");
-    this.template("_test.js", "tests/lib/rules/" + this.ruleId + ".js");
+    this.mkdir("lib");
+    this.mkdir("tests");
+    this.mkdir("tests/lib");
+    this.template("_plugin.js", "lib/index.js");
+    this.template("_package.json", "package.json");
+    this.template("_README.md", "README.md");
+
+    if (this.hasRules) {
+        this.mkdir("lib/rules");
+        this.mkdir("tests/lib/rules");
+    }
+
+    if (this.hasProcessors) {
+        this.mkdir("lib/processors");
+        this.mkdir("tests/lib/processors");
+    }
+
 };

@@ -20,7 +20,7 @@ var path    = require("path"),
 // Tests
 //------------------------------------------------------------------------------
 
-describe("eslint generator", function () {
+describe("ESLint Rule Generator", function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, "temp"), function (err) {
             if (err) {
@@ -46,7 +46,71 @@ describe("eslint generator", function () {
             userName: "Foo Bar",
             ruleId: "foo-bar",
             desc: "My foo",
-            invalidCode: "var x;"
+            invalidCode: "var x;",
+            target: "eslint"
+        });
+        this.rule.options["skip-install"] = true;
+        this.rule.run(function () {
+            assert.file(expected);
+            done();
+        });
+    });
+});
+
+describe("ESLint Plugin Generator", function () {
+    beforeEach(function (done) {
+        helpers.testDirectory(path.join(__dirname, "temp"), function (err) {
+            if (err) {
+                return done(err);
+            }
+
+            this.rule = helpers.createGenerator("eslint:plugin", [
+                "../../plugin"
+            ]);
+            done();
+        }.bind(this));
+    });
+
+    it("creates expected files when rules are expected", function (done) {
+
+        var expected = [
+            "lib/rules",
+            "tests/lib/rules",
+            "lib/index.js",
+            "package.json",
+            "README.md"
+        ];
+
+        helpers.mockPrompt(this.rule, {
+            userName: "Foo Bar",
+            pluginId: "foo-bar",
+            desc: "My foo",
+            hasRules: true,
+            hasProcessors: false
+        });
+        this.rule.options["skip-install"] = true;
+        this.rule.run(function () {
+            assert.file(expected);
+            done();
+        });
+    });
+
+    it.only("creates expected files when processors are expected", function (done) {
+
+        var expected = [
+            "lib/processors",
+            "tests/lib/processors",
+            "lib/index.js",
+            "package.json",
+            "README.md"
+        ];
+
+        helpers.mockPrompt(this.rule, {
+            userName: "Foo Bar",
+            pluginId: "eslint-plugin-foo-bar",
+            desc: "My foo",
+            hasRules: false,
+            hasProcessors: true
         });
         this.rule.options["skip-install"] = true;
         this.rule.run(function () {
