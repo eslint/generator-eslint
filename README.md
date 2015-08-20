@@ -29,7 +29,7 @@ You'll be prompted for information about your plugin and it will generate a `pac
 
 ### eslint:rule
 
-If you want to create a new ESLint rule, make sure you're in the top-level directory of an ESLint repo clone or am ESLint plugin and type:
+If you want to create a new ESLint rule, make sure you're in the top-level directory of an ESLint repo clone or an ESLint plugin and type:
 
 ```
 $ yo eslint:rule
