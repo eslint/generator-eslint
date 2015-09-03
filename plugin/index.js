@@ -74,13 +74,15 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         message: "Type a short description of this plugin:",
         validate: isRequired
     }, {
-        type: "checkbox",
+        type: "confirm",
         name: "hasRules",
-        message: "Does this plugin contain custom ESLint rules?"
+        message: "Does this plugin contain custom ESLint rules?",
+        default: true
     }, {
-        type: "checkbox",
+        type: "confirm",
         name: "hasProcessors",
-        message: "Does this plugin contain one or more processors?"
+        message: "Does this plugin contain one or more processors?",
+        default: false
     }];
 
     this.prompt(prompts, function (props) {
