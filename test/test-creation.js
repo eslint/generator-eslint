@@ -95,7 +95,7 @@ describe("ESLint Plugin Generator", function () {
         });
     });
 
-    it.only("creates expected files when processors are expected", function (done) {
+    it("creates expected files when processors are expected", function (done) {
 
         var expected = [
             "lib/processors",
