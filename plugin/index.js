@@ -12,39 +12,14 @@ var util = require("util");
 var path = require("path");
 var yeoman = require("yeoman-generator");
 
+var validators = require("../lib/validators");
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-/**
- * Determines if a given pluginId is valid. This is used by the prompt system.
- * @param {string} pluginId The rule ID to check.
- * @returns {boolean|string} True if valid, a string with an error message if not.
- * @private
- */
-function isPluginId(pluginId) {
-    if (/^(?:[a-z]+(?:\-[a-z]+)*)$/.test(pluginId)) {
-        return true;
-    } else {
-        return "Rule ID must be all lowercase with dashes as separators.";
-    }
-}
+var isPluginId = validators.isPluginId;
+var isRequired = validators.isRequired;
 
-/**
- * Validates that a value has been provided. This is used for validating
- * user input using prompts.
- * @param {string} value The inputted value.
- * @returns {string|boolean} A string if the value is an empty string, true
- *      if the value is not an empty string.
- * @private
- */
-function isRequired(value) {
-    if (value === "") {
-        return "Please provide a value";
-    } else {
-        return true;
-    }
-}
 
 //------------------------------------------------------------------------------
 // Constructor
