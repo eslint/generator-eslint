@@ -1,6 +1,6 @@
 {
   "name": "generator-eslint",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
