@@ -14,7 +14,7 @@
 
 var path    = require("path"),
     helpers = require("yeoman-test"),
-    assert  = require('yeoman-assert');
+    assert  = require("yeoman-assert");
 
 //------------------------------------------------------------------------------
 // Tests
