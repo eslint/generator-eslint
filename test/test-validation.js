@@ -12,7 +12,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require('yeoman-assert');
+var assert = require("yeoman-assert");
 var validators = require("../lib/validators");
 
 //------------------------------------------------------------------------------
