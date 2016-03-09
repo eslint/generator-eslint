@@ -10,7 +10,7 @@
 
 var util = require("util");
 var path = require("path");
-var mkdirp = require('mkdirp');
+var mkdirp = require("mkdirp");
 var yeoman = require("yeoman-generator");
 
 var validators = require("../lib/validators");
