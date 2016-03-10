@@ -21,10 +21,11 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0"
+    "yeoman-generator": "~0.22.5"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mkdirp": "~0.5.1",
+    "mocha": "~2.4.5"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
@@ -33,9 +34,5 @@
     "node": ">=0.8.0",
     "npm": ">=1.2.10"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "license": "MIT"
 }

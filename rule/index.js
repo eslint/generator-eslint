@@ -25,10 +25,10 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator(args, options, config) {
-	yeoman.generators.Base.apply(this, arguments);
+	yeoman.Base.apply(this, arguments);
 };
 
-util.inherits(ESLintRuleGenerator, yeoman.generators.Base);
+util.inherits(ESLintRuleGenerator, yeoman.Base);
 
 ESLintRuleGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
