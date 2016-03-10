@@ -13,17 +13,24 @@
     "url": "https://github.com/eslint"
   },
   "main": "app/index.js",
+  "files": [
+    "lib",
+    "plugin",
+    "rule"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/eslint/generator-eslint.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "release": "eslint-release"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0"
   },
   "devDependencies": {
+    "eslint-release": "^0.3.0",
     "mocha": "~1.14.0"
   },
   "peerDependencies": {
