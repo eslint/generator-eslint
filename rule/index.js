@@ -11,6 +11,9 @@
 var util = require("util");
 var path = require("path");
 var yeoman = require("yeoman-generator");
+var editorconfig = require("editorconfig");
+var beautify = require("gulp-beautify");
+var filter = require("gulp-filter");
 var validators = require("../lib/validators");
 
 //------------------------------------------------------------------------------
@@ -25,7 +28,14 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator(args, options, config) {
-	yeoman.generators.Base.apply(this, arguments);
+    yeoman.generators.Base.apply(this, arguments);
+
+    var config = editorconfig.parseSync(path.join(process.cwd(), '*.js'));
+    var javascript = filter('**/*.js', {restore: true});
+
+    this.registerTransformStream(javascript);
+    this.registerTransformStream(beautify(config));
+    this.registerTransformStream(javascript.restore);
 };
 
 util.inherits(ESLintRuleGenerator, yeoman.generators.Base);
