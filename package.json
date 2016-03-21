@@ -27,7 +27,10 @@
     "release": "eslint-release"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0"
+    "editorconfig": "^0.13.2",
+    "gulp-beautify": "^2.0.0",
+    "gulp-filter": "^4.0.0",
+    "yeoman-generator": "~0.18.0"
   },
   "devDependencies": {
     "eslint-release": "^0.3.0",
