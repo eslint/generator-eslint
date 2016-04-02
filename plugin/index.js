@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 var util = require("util");
-var path = require("path");
 var yeoman = require("yeoman-generator");
 
 var validators = require("../lib/validators");
@@ -20,13 +19,12 @@ var validators = require("../lib/validators");
 var isPluginId = validators.isPluginId;
 var isRequired = validators.isRequired;
 
-
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator(args, options, config) {
-	yeoman.generators.Base.apply(this, arguments);
+var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
+    yeoman.generators.Base.apply(this, arguments);
 };
 
 util.inherits(ESLintPluginGenerator, yeoman.generators.Base);
@@ -60,7 +58,7 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         default: false
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
         this.pluginId = props.pluginId.replace("eslint-plugin-", "");
         this.hasRules = props.hasRules;
         this.hasProcessors = props.hasProcessors;

@@ -9,7 +9,6 @@
 //------------------------------------------------------------------------------
 
 var util = require("util");
-var path = require("path");
 var yeoman = require("yeoman-generator");
 var validators = require("../lib/validators");
 
@@ -24,8 +23,8 @@ var isRequired = validators.isRequired;
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator(args, options, config) {
-	yeoman.generators.Base.apply(this, arguments);
+var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator() {
+    yeoman.generators.Base.apply(this, arguments);
 };
 
 util.inherits(ESLintRuleGenerator, yeoman.generators.Base);
@@ -58,10 +57,10 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
     }, {
         type: "input",
         name: "invalidCode",
-        message: "Type a short example of the code that will fail:",
+        message: "Type a short example of the code that will fail:"
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
         this.ruleId = props.ruleId;
         this.invalidCode = props.invalidCode;
         this.target = props.target;

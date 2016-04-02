@@ -5,7 +5,7 @@
  * See LICENSE file in root directory for full license.
  */
 
-/*global describe, it*/
+/* global describe, it*/
 "use strict";
 
 //------------------------------------------------------------------------------
@@ -19,24 +19,24 @@ var validators = require("../lib/validators");
 // Tests
 //------------------------------------------------------------------------------
 
-describe("validation helpers", function () {
+describe("validation helpers", function() {
 
-    it("some valid plugin names", function () {
+    it("some valid plugin names", function() {
         assert(validators.isPluginId("eslint-plugin-foo") === true);
         assert(validators.isPluginId("foo-bar") === true);
 
     });
 
-    it("plugin id can contain numbers", function () {
+    it("plugin id can contain numbers", function() {
         assert(validators.isPluginId("eslint-plugin-e4x") === true);
     });
 
-    it("some valid rule names", function () {
+    it("some valid rule names", function() {
         assert(validators.isRuleId("rule-foo-bar") === true);
         assert(validators.isRuleId("foo-bar") === true);
     });
 
-    it("rule id can contain numbers", function () {
+    it("rule id can contain numbers", function() {
         assert(validators.isRuleId("rule-1234") === true);
     });
 });
