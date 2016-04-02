@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 var util = require("util");
+var mkdirp = require("mkdirp");
 var yeoman = require("yeoman-generator");
 
 var validators = require("../lib/validators");
@@ -24,10 +25,10 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
-    yeoman.generators.Base.apply(this, arguments);
+    yeoman.Base.apply(this, arguments);
 };
 
-util.inherits(ESLintPluginGenerator, yeoman.generators.Base);
+util.inherits(ESLintPluginGenerator, yeoman.Base);
 
 ESLintPluginGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
@@ -69,27 +70,23 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         cb();
 
     }.bind(this));
-
-
 };
 
 ESLintPluginGenerator.prototype.generate = function generate() {
-
-    this.mkdir("lib");
-    this.mkdir("tests");
-    this.mkdir("tests/lib");
+    mkdirp.sync("lib");
+    mkdirp.sync("tests");
+    mkdirp.sync("tests/lib");
     this.template("_plugin.js", "lib/index.js");
     this.template("_package.json", "package.json");
     this.template("_README.md", "README.md");
 
     if (this.hasRules) {
-        this.mkdir("lib/rules");
-        this.mkdir("tests/lib/rules");
+        mkdirp.sync("lib/rules");
+        mkdirp.sync("tests/lib/rules");
     }
 
     if (this.hasProcessors) {
-        this.mkdir("lib/processors");
-        this.mkdir("tests/lib/processors");
+        mkdirp.sync("lib/processors");
+        mkdirp.sync("tests/lib/processors");
     }
-
 };

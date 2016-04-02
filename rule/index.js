@@ -24,10 +24,10 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator() {
-    yeoman.generators.Base.apply(this, arguments);
+    yeoman.Base.apply(this, arguments);
 };
 
-util.inherits(ESLintRuleGenerator, yeoman.generators.Base);
+util.inherits(ESLintRuleGenerator, yeoman.Base);
 
 ESLintRuleGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
@@ -71,12 +71,9 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         cb();
 
     }.bind(this));
-
-
 };
 
 ESLintRuleGenerator.prototype.generate = function generate() {
-
     this.template("_doc.md", "docs/rules/" + this.ruleId + ".md");
     this.template("_rule.js", "lib/rules/" + this.ruleId + ".js");
     this.template("_test.js", "tests/lib/rules/" + this.ruleId + ".js");
