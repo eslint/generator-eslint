@@ -28,13 +28,16 @@
     "release": "eslint-release"
   },
   "dependencies": {
-    "yeoman-generator": "~0.16.0"
+    "mkdirp": "^0.5.1",
+    "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
     "eslint": "^2.6.0",
     "eslint-config-eslint": "^3.0.0",
-    "eslint-release": "^0.3.0",
-    "mocha": "~1.14.0"
+    "eslint-release": "^0.5.0",
+    "mocha": "^2.4.5",
+    "yeoman-assert": "^2.1.2",
+    "yeoman-test": "^1.1.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
