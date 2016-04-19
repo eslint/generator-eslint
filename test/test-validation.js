@@ -1,8 +1,8 @@
 /**
  * @fileoverview Rule validators tests
  * @author Mitchell Amihod
- * @copyright 2015 Mitchell Amihod. All rights reserved.
- * See LICENSE file in root directory for full license.
+ * @copyright jQuery Foundation and other contributors, https://jquery.org/
+ * MIT License
  */
 
 /* global describe, it*/

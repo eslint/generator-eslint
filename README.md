@@ -39,6 +39,6 @@ You'll be prompted for some information and then it will generate the files nece
 
 ## License and Copyright
 
-Copyright 2014-2015 Nicholas C. Zakas. All rights reserved.
+Copyright jQuery Foundation and other contributors, https://jquery.org/
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)

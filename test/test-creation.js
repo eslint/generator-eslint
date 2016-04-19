@@ -1,8 +1,8 @@
 /**
  * @fileoverview Rule generator tests
  * @author Nicholas C. Zakas
- * @copyright 2014 Nicholas C. Zakas. All rights reserved.
- * See LICENSE file in root directory for full license.
+ * @copyright jQuery Foundation and other contributors, https://jquery.org/
+ * MIT License
  */
 /* eslint no-invalid-this:0 */
 /* global describe, beforeEach, it*/
