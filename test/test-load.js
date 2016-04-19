@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Rule generator tests
+ * @author Nicholas C. Zakas
+ * @copyright jQuery Foundation and other contributors, https://jquery.org/
+ * MIT License
+ */
+
+
 /* eslint no-undefined:0 */
 /* global describe, it*/
 "use strict";
