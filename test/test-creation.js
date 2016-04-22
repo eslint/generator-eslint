@@ -1,8 +1,6 @@
 /**
  * @fileoverview Rule generator tests
  * @author Nicholas C. Zakas
- * @copyright jQuery Foundation and other contributors, https://jquery.org/
- * MIT License
  */
 /* eslint no-invalid-this:0 */
 /* global describe, beforeEach, it*/

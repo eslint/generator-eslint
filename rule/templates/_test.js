@@ -1,8 +1,6 @@
 /**
  * @fileoverview <%= desc %>
  * @author <%= userName %>
- * @copyright <%= year%> <%= userName %>. All rights reserved.
- * See LICENSE file in root directory for full license.
  */
 "use strict";
 
