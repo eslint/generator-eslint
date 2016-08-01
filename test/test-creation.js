@@ -2,8 +2,9 @@
  * @fileoverview Rule generator tests
  * @author Nicholas C. Zakas
  */
+
 /* eslint no-invalid-this:0 */
-/* global describe, beforeEach, it*/
+
 "use strict";
 
 //------------------------------------------------------------------------------

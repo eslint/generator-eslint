@@ -3,9 +3,8 @@
  * @author Nicholas C. Zakas
  */
 
-
 /* eslint no-undefined:0 */
-/* global describe, it*/
+
 "use strict";
 
 var assert = require("assert");
