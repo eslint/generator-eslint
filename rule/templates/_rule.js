@@ -8,28 +8,37 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
-module.exports = function(context) {
+module.exports = {
+    meta: {
+        docs: {
+            description: "<%= desc %>",
+            category: "Fill me in",
+            recommended: false
+        },
+        fixable: null,  // or "code" or "whitespace"
+        schema: [
+            // fill in your schema
+        ]
+    },
 
-    // variables should be defined here
+    create: function(context) {
 
-    //--------------------------------------------------------------------------
-    // Helpers
-    //--------------------------------------------------------------------------
+        // variables should be defined here
 
-    // any helper functions should go here or else delete this section
+        //----------------------------------------------------------------------
+        // Helpers
+        //----------------------------------------------------------------------
 
-    //--------------------------------------------------------------------------
-    // Public
-    //--------------------------------------------------------------------------
+        // any helper functions should go here or else delete this section
 
-    return {
+        //----------------------------------------------------------------------
+        // Public
+        //----------------------------------------------------------------------
 
-        // give me methods
+        return {
 
-    };
+            // give me methods
 
+        };
+    }
 };
-
-module.exports.schema = [
-    // fill in your schema
-];
