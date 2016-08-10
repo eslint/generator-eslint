@@ -1,3 +1,11 @@
+v1.1.0 - August 10, 2016
+
+* adffe8c Update: Rule generator uses new rule format (fixes #36) (#41) (Kevin Partington)
+* 19417c4 New: Main generator (calls existing generators) (fixes #31) (#40) (Kevin Partington)
+* 314f47a Build: Add CI release scripts (Nicholas C. Zakas)
+* 17a0537 Chore: Rename .eslintrc, add tests eslintrc w/ mocha env (fixes #37) (#38) (Kevin Partington)
+* 2a37eb5 Fix: add mocha as a dependency (fixes #32) (Patrick McElhaney)
+
 v1.0.4 - April 22, 2016
 
 * 5cfbe55 Chore: Remove unnecessary copyright/license info (Nicholas C. Zakas)
