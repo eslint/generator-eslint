@@ -1,6 +1,6 @@
 /**
- * @fileoverview <%= desc %>
- * @author <%= userName %>
+ * @fileoverview <%- desc %>
+ * @author <%- userName %>
  */
 "use strict";
 
@@ -11,7 +11,7 @@
 module.exports = {
     meta: {
         docs: {
-            description: "<%= desc %>",
+            description: "<%- desc.replace(/"/g, '\\"') %>",
             category: "Fill me in",
             recommended: false
         },

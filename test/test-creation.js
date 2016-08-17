@@ -11,7 +11,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path"),
+var fs = require("fs"),
+    path = require("path"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -19,9 +20,11 @@ var path = require("path"),
 // Tests
 //------------------------------------------------------------------------------
 
+var testDirectory = path.join(__dirname, "temp");
+
 describe("ESLint Rule Generator", function() {
     beforeEach(function(done) {
-        helpers.testDirectory(path.join(__dirname, "temp"), function(err) {
+        helpers.testDirectory(testDirectory, function(err) {
             if (err) {
                 return done(err);
             }
@@ -52,6 +55,96 @@ describe("ESLint Rule Generator", function() {
         this.rule.run(function() {
             assert.file(expected);
             done();
+        });
+    });
+
+    describe("With pathological input", function() {
+        describe("Double quotes in description", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "",
+                    ruleId: "test-rule",
+                    desc: "My \"foo\"",
+                    invalidCode: "var x = \"foo\";",
+                    target: "eslint"
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting rule file", function() {
+                beforeEach(function() {
+                    this.resultRuleModule = require(path.join(testDirectory, "lib", "rules", "test-rule"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultRuleModule);
+                });
+
+                it("should have correct description", function() {
+                    assert.strictEqual(this.resultRuleModule.meta.docs.description, "My \"foo\"");
+                });
+            });
+        });
+
+        /*
+         * TODO: (platinumazure) Uncomment when eslint/generator-eslint#44 is
+         * fixed.
+         */
+//        describe("Single quotes in description", function() {
+//            beforeEach(function(done) {
+//                helpers.mockPrompt(this.rule, {
+//                    userName: "",
+//                    ruleId: "test-rule",
+//                    desc: "My 'foo'",
+//                    invalidCode: "var x;",
+//                    target: "eslint"
+//                });
+//                this.rule.options["skip-install"] = true;
+//                this.rule.run(done);
+//            });
+//
+//            describe("Resulting rule file", function() {
+//                beforeEach(function() {
+//                    this.resultRuleModule = require(path.join(testDirectory, "lib", "rules", "test-rule"));
+//                });
+//
+//                it("should be requireable", function() {
+//                    assert.ok(this.resultRuleModule);
+//                });
+//
+//                it("should have correct description", function() {
+//                    assert.strictEqual(this.resultRuleModule.meta.docs.description, "My 'foo'");
+//                });
+//            });
+//        });
+
+        describe("Double quotes in code snippet", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "",
+                    ruleId: "test-rule",
+                    desc: "My \"foo\"",
+                    invalidCode: "var x = \"foo\";",
+                    target: "eslint"
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting test file", function() {
+                beforeEach(function() {
+                    this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
+                });
+
+                it("should be readable", function() {
+                    assert.ok(this.resultTestModuleContent);
+                });
+
+                it("should have correct code snippet", function() {
+                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = \\\"foo\\\";") > -1);
+                });
+            });
         });
     });
 });
@@ -115,6 +208,96 @@ describe("ESLint Plugin Generator", function() {
         this.rule.run(function() {
             assert.file(expected);
             done();
+        });
+    });
+
+    describe("With pathological input", function() {
+        describe("Double quotes in description", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "Kevin \"platinumazure\" Partington",
+                    pluginId: "test-plugin",
+                    desc: "My \"foo\"",
+                    hasRules: false,
+                    hasProcessors: false
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting package.json", function() {
+                beforeEach(function() {
+                    this.resultPackageJson = require(path.join(testDirectory, "package.json"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultPackageJson);
+                });
+
+                it("should have correct description", function() {
+                    assert.strictEqual(this.resultPackageJson.description, "My \"foo\"");
+                });
+            });
+        });
+
+        /*
+         * TODO: (platinumazure) Uncomment when eslint/generator-eslint#44 is
+         * fixed.
+         */
+//        describe("Single quotes in description", function() {
+//            beforeEach(function(done) {
+//                helpers.mockPrompt(this.rule, {
+//                    userName: "",
+//                    pluginId: "test-plugin",
+//                    desc: "My 'foo'",
+//                    hasRules: false,
+//                    hasProcessors: false,
+//                });
+//                this.rule.options["skip-install"] = true;
+//                this.rule.run(done);
+//            });
+//
+//            describe("Resulting package.json", function() {
+//                beforeEach(function() {
+//                    this.resultPackageJson = require(path.join(testDirectory, "package.json"));
+//                });
+//
+//                it("should be requireable", function() {
+//                    assert.ok(this.resultPackageJson);
+//                });
+//
+//                it("should have correct description", function() {
+//                    assert.strictEqual(this.resultPackageJson.description, "My 'foo'");
+//                });
+//            });
+//        });
+
+        describe("Double quotes in username", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "Kevin \"platinumazure\" Partington",
+                    pluginId: "test-plugin",
+                    desc: "My \"foo\"",
+                    hasRules: false,
+                    hasProcessors: false
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting package.json", function() {
+                beforeEach(function() {
+                    this.resultPackageJson = require(path.join(testDirectory, "package.json"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultPackageJson);
+                });
+
+                it("should have correct author", function() {
+                    assert.strictEqual(this.resultPackageJson.author, "Kevin \"platinumazure\" Partington");
+                });
+            });
         });
     });
 });
