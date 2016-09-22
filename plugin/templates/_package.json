@@ -1,13 +1,13 @@
 {
   "name": "eslint-plugin-<%= pluginId %>",
   "version": "0.0.0",
-  "description": "<%= desc %>",
+  "description": "<%- desc.replace(/"/g, '\\"') %>",
   "keywords": [
     "eslint",
     "eslintplugin",
     "eslint-plugin"
   ],
-  "author": "<%= userName %>",
+  "author": "<%- userName.replace(/"/g, '\\"') %>",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha tests --recursive"
