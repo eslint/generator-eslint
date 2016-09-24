@@ -21,7 +21,7 @@
   ],
   "repository": "eslint/generator-eslint",
   "scripts": {
-    "test": "npm run lint && mocha",
+    "test": "npm run lint && mocha \"tests/**/*.js\"",
     "lint": "eslint .",
     "release": "eslint-release",
     "ci-release": "eslint-ci-release",

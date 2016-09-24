@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var assert = require("assert");
-var validators = require("../lib/validators");
+var validators = require("../../lib/validators");
 
 //------------------------------------------------------------------------------
 // Tests

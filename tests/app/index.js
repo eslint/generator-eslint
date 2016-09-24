@@ -29,7 +29,7 @@ describe("ESLint Main Generator", function() {
             exec: this.spy
         });
 
-        helpers.testDirectory(path.join(__dirname, "temp"), done);
+        helpers.testDirectory(path.join(__dirname, "../../temp"), done);
     });
 
     beforeEach(function() {
@@ -50,7 +50,7 @@ describe("ESLint Main Generator", function() {
              */
 
             this.eslintGenerator = helpers.createGenerator("eslint", [
-                "../../app",
+                "../app",
                 [this.dummyGenerator, "eslint:plugin"]
             ]);
 
@@ -82,7 +82,7 @@ describe("ESLint Main Generator", function() {
              */
 
             this.eslintGenerator = helpers.createGenerator("eslint", [
-                "../../app",
+                "../app",
                 [this.dummyGenerator, "eslint:rule"]
             ]);
 
