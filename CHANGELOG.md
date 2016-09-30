@@ -1,3 +1,8 @@
+v1.1.1 - September 30, 2016
+
+* c19cd6d Chore: Reorganizing tests to align with project structure (#46) (Kevin Partington)
+* 0b540e2 Fix: Double quotes correctly escaped in JS/JSON files (fixes #42) (#45) (Kevin Partington)
+
 v1.1.0 - August 10, 2016
 
 * adffe8c Update: Rule generator uses new rule format (fixes #36) (#41) (Kevin Partington)
