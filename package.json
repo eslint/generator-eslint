@@ -36,6 +36,7 @@
     "eslint-config-eslint": "^3.0.0",
     "eslint-release": "^0.10.1",
     "mocha": "^2.4.5",
+    "require-uncached": "^1.0.2",
     "sinon": "^1.17.5",
     "yeoman-assert": "^2.1.2",
     "yeoman-test": "^1.1.0"

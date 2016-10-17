@@ -13,6 +13,7 @@
 
 var fs = require("fs"),
     path = require("path"),
+    requireUncached = require("require-uncached"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -65,7 +66,7 @@ describe("ESLint Rule Generator", function() {
                     userName: "",
                     ruleId: "test-rule",
                     desc: "My \"foo\"",
-                    invalidCode: "var x = \"foo\";",
+                    invalidCode: "var x;",
                     target: "eslint"
                 });
                 this.rule.options["skip-install"] = true;
@@ -74,7 +75,7 @@ describe("ESLint Rule Generator", function() {
 
             describe("Resulting rule file", function() {
                 beforeEach(function() {
-                    this.resultRuleModule = require(path.join(testDirectory, "lib", "rules", "test-rule"));
+                    this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
                 });
 
                 it("should be requireable", function() {
@@ -92,7 +93,7 @@ describe("ESLint Rule Generator", function() {
                 helpers.mockPrompt(this.rule, {
                     userName: "",
                     ruleId: "test-rule",
-                    desc: "My \"foo\"",
+                    desc: "My foo",
                     invalidCode: "var x = \"foo\";",
                     target: "eslint"
                 });
@@ -110,7 +111,63 @@ describe("ESLint Rule Generator", function() {
                 });
 
                 it("should have correct code snippet", function() {
-                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = \\\"foo\\\";") > -1);
+                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = \\\"foo\\\";\"") > -1);
+                });
+            });
+        });
+
+        describe("Single quotes in description", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "",
+                    ruleId: "test-rule",
+                    desc: "My 'foo'",
+                    invalidCode: "var x;",
+                    target: "eslint"
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting rule file", function() {
+                beforeEach(function() {
+                    this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultRuleModule);
+                });
+
+                it("should have correct description", function() {
+                    assert.strictEqual(this.resultRuleModule.meta.docs.description, "My 'foo'");
+                });
+            });
+        });
+
+        describe("Single quotes in code snippet", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "",
+                    ruleId: "test-rule",
+                    desc: "My foo",
+                    invalidCode: "var x = 'foo';",
+                    target: "eslint"
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting test file", function() {
+                beforeEach(function() {
+                    this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
+                });
+
+                it("should be readable", function() {
+                    assert.ok(this.resultTestModuleContent);
+                });
+
+                it("should have correct code snippet", function() {
+                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = 'foo';\"") > -1);
                 });
             });
         });
