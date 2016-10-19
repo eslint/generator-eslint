@@ -12,6 +12,7 @@
 //------------------------------------------------------------------------------
 
 var path = require("path"),
+    requireUncached = require("require-uncached"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -87,7 +88,7 @@ describe("ESLint Plugin Generator", function() {
         describe("Double quotes in description", function() {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
-                    userName: "Kevin \"platinumazure\" Partington",
+                    userName: "Kevin platinumazure Partington",
                     pluginId: "test-plugin",
                     desc: "My \"foo\"",
                     hasRules: false,
@@ -99,7 +100,7 @@ describe("ESLint Plugin Generator", function() {
 
             describe("Resulting package.json", function() {
                 beforeEach(function() {
-                    this.resultPackageJson = require(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
@@ -117,7 +118,7 @@ describe("ESLint Plugin Generator", function() {
                 helpers.mockPrompt(this.rule, {
                     userName: "Kevin \"platinumazure\" Partington",
                     pluginId: "test-plugin",
-                    desc: "My \"foo\"",
+                    desc: "My foo",
                     hasRules: false,
                     hasProcessors: false
                 });
@@ -127,7 +128,7 @@ describe("ESLint Plugin Generator", function() {
 
             describe("Resulting package.json", function() {
                 beforeEach(function() {
-                    this.resultPackageJson = require(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
@@ -136,6 +137,62 @@ describe("ESLint Plugin Generator", function() {
 
                 it("should have correct author", function() {
                     assert.strictEqual(this.resultPackageJson.author, "Kevin \"platinumazure\" Partington");
+                });
+            });
+        });
+
+        describe("Single quotes in description", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "Kevin platinumazure Partington",
+                    pluginId: "test-plugin",
+                    desc: "My 'foo'",
+                    hasRules: false,
+                    hasProcessors: false
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting package.json", function() {
+                beforeEach(function() {
+                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultPackageJson);
+                });
+
+                it("should have correct description", function() {
+                    assert.strictEqual(this.resultPackageJson.description, "My 'foo'");
+                });
+            });
+        });
+
+        describe("Single quotes in username", function() {
+            beforeEach(function(done) {
+                helpers.mockPrompt(this.rule, {
+                    userName: "Kevin 'platinumazure' Partington",
+                    pluginId: "test-plugin",
+                    desc: "My foo",
+                    hasRules: false,
+                    hasProcessors: false
+                });
+                this.rule.options["skip-install"] = true;
+                this.rule.run(done);
+            });
+
+            describe("Resulting package.json", function() {
+                beforeEach(function() {
+                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                });
+
+                it("should be requireable", function() {
+                    assert.ok(this.resultPackageJson);
+                });
+
+                it("should have correct author", function() {
+                    assert.strictEqual(this.resultPackageJson.author, "Kevin 'platinumazure' Partington");
                 });
             });
         });
