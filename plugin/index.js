@@ -32,6 +32,16 @@ var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
 
 util.inherits(ESLintPluginGenerator, yeoman.Base);
 
+ESLintPluginGenerator.prototype.initializing = function initializing() {
+    this.defaultEslintVersion = this.spawnCommandSync(
+        "npm",
+        ["show", "eslint", "version"],
+        {
+            stdio: "pipe"
+        }
+    ).stdout.trim();
+}
+
 ESLintPluginGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
@@ -49,6 +59,12 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         name: "desc",
         message: "Type a short description of this plugin:",
         validate: isRequired
+    }, {
+        type: "input",
+        name: "eslintPeerDepVersion",
+        message: "What version(s) of ESLint do you want to be compatible with?",
+        default: this.defaultEslintVersion,
+	validate: semver.valid
     }, {
         type: "confirm",
         name: "hasRules",
