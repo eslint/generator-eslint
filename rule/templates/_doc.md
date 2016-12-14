@@ -7,7 +7,7 @@ Please describe the origin of the rule here.
 
 This rule aims to...
 
-The following patterns are considered warnings:
+Examples of **incorrect** code for this rule:
 
 ```js
 
@@ -15,7 +15,7 @@ The following patterns are considered warnings:
 
 ```
 
-The following patterns are not warnings:
+Examples of **correct** code for this rule:
 
 ```js
 
