@@ -1,3 +1,19 @@
+v1.2.0 - December 16, 2016
+
+* d9a75e1 Chore: Fix license field in package.json to be valid SPDX string (#57) (Kevin Partington)
+* e7e14c1 Build: Test in Node 6 (and 7) on Travis (#56) (Kevin Partington)
+* 35e759c Update: Generated rule doc uses core ESLint example headers (fixes #21) (#55) (Kevin Partington)
+* dab779a Build: Pinning run-async dependency to 2.2.x (#54) (Kevin Partington)
+* 9f6f865 Update: Plugin package.json template devDependencies upgrade (fixes #52) (#53) (Kevin Partington)
+* 6603484 Docs: Update license copyright (Nicholas C. Zakas)
+* 737a81b Docs: clarify that Yeoman needs to be installed separately (#50) (Teddy Katz)
+* 5f990e5 Chore: Use require-uncached to avoid stale cache in tests (fixes #44) (#49) (Kevin Partington)
+* 2cb110f Upgrade: eslint-release@^0.10.1 (#47) (Kevin Partington)
+* 34f37a0 1.1.1 (ESLint Jenkins)
+* 1aa7f48 Build: package.json and changelog update for 1.1.1 (ESLint Jenkins)
+* c19cd6d Chore: Reorganizing tests to align with project structure (#46) (Kevin Partington)
+* 0b540e2 Fix: Double quotes correctly escaped in JS/JSON files (fixes #42) (#45) (Kevin Partington)
+
 v1.1.1 - September 30, 2016
 
 * c19cd6d Chore: Reorganizing tests to align with project structure (#46) (Kevin Partington)
