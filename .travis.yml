@@ -4,6 +4,8 @@ node_js:
   - "0.12"
   - "4"
   - "5"
+  - "6"
+  - "7"
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-eslint' ]; then cd .. && eval "mv $currentfolder generator-eslint" && cd generator-eslint; fi
