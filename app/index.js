@@ -35,7 +35,7 @@ module.exports = yeoman.Base.extend({
             message: "Do you want to generate a rule or a plugin?",
             choices: ["Rule", "Plugin"],
             default: "Rule"
-        }, function(answers) {
+        }).then(function(answers) {
             this.composeWith(NAMESPACES[answers.outputType]);
             done();
         }.bind(this));

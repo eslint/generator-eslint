@@ -30,7 +30,7 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "run-async": "2.2.x",
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^0.24.1"
   },
   "devDependencies": {
     "eslint": "^2.6.0",

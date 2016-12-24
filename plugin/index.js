@@ -61,7 +61,7 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         default: false
     }];
 
-    this.prompt(prompts, function(props) {
+    this.prompt(prompts).then(function(props) {
         this.pluginId = props.pluginId.replace("eslint-plugin-", "");
         this.hasRules = props.hasRules;
         this.hasProcessors = props.hasProcessors;

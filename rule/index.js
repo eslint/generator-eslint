@@ -60,7 +60,7 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         message: "Type a short example of the code that will fail:"
     }];
 
-    this.prompt(prompts, function(props) {
+    this.prompt(prompts).then(function(props) {
         this.ruleId = props.ruleId;
         this.invalidCode = props.invalidCode;
         this.target = props.target;
