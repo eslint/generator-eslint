@@ -24,8 +24,6 @@ var isRequired = validators.isRequired;
 
 module.exports = Generator.extend({
     prompting: function() {
-        var cb = this.async();
-
         var prompts = [{
             type: "input",
             name: "userName",
@@ -54,16 +52,13 @@ module.exports = Generator.extend({
             message: "Type a short example of the code that will fail:"
         }];
 
-        this.prompt(prompts).then(function(props) {
+        return this.prompt(prompts).then(function(props) {
             this.ruleId = props.ruleId;
             this.invalidCode = props.invalidCode;
             this.target = props.target;
             this.desc = props.desc;
             this.userName = props.userName;
             this.year = (new Date()).getFullYear();
-
-            cb();
-
         }.bind(this));
     },
 

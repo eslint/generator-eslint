@@ -27,8 +27,6 @@ var isRequired = validators.isRequired;
 
 module.exports = Generator.extend({
     prompting: function() {
-        var cb = this.async();
-
         var prompts = [{
             type: "input",
             name: "userName",
@@ -55,16 +53,13 @@ module.exports = Generator.extend({
             default: false
         }];
 
-        this.prompt(prompts).then(function(props) {
+        return this.prompt(prompts).then(function(props) {
             this.pluginId = props.pluginId.replace("eslint-plugin-", "");
             this.hasRules = props.hasRules;
             this.hasProcessors = props.hasProcessors;
             this.desc = props.desc;
             this.userName = props.userName;
             this.year = (new Date()).getFullYear();
-
-            cb();
-
         }.bind(this));
     },
 

@@ -27,9 +27,7 @@ var NAMESPACES = {
 
 module.exports = Generator.extend({
     prompting: function() {
-        var done = this.async();
-
-        this.prompt({
+        return this.prompt({
             type: "list",
             name: "outputType",
             message: "Do you want to generate a rule or a plugin?",
@@ -37,7 +35,6 @@ module.exports = Generator.extend({
             default: "Rule"
         }).then(function(answers) {
             this.composeWith(NAMESPACES[answers.outputType]);
-            done();
         }.bind(this));
     }
 });
