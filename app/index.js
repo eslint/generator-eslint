@@ -10,7 +10,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var yeoman = require("yeoman-generator");
+var Generator = require("yeoman-generator");
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -25,7 +25,7 @@ var NAMESPACES = {
 // Constructor
 //------------------------------------------------------------------------------
 
-module.exports = yeoman.Base.extend({
+module.exports = Generator.extend({
     prompting: function() {
         var done = this.async();
 

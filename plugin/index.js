@@ -10,9 +10,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var util = require("util");
 var mkdirp = require("mkdirp");
-var yeoman = require("yeoman-generator");
+var Generator = require("yeoman-generator");
 
 var validators = require("../lib/validators");
 //------------------------------------------------------------------------------
@@ -26,69 +25,77 @@ var isRequired = validators.isRequired;
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
-    yeoman.Base.apply(this, arguments);
-};
+module.exports = Generator.extend({
+    askFor: function() {
+        var cb = this.async();
 
-util.inherits(ESLintPluginGenerator, yeoman.Base);
+        var prompts = [{
+            type: "input",
+            name: "userName",
+            message: "What is your name?"
+        }, {
+            type: "input",
+            name: "pluginId",
+            message: "What is the plugin ID?",
+            validate: isPluginId
+        }, {
+            type: "input",
+            name: "desc",
+            message: "Type a short description of this plugin:",
+            validate: isRequired
+        }, {
+            type: "confirm",
+            name: "hasRules",
+            message: "Does this plugin contain custom ESLint rules?",
+            default: true
+        }, {
+            type: "confirm",
+            name: "hasProcessors",
+            message: "Does this plugin contain one or more processors?",
+            default: false
+        }];
 
-ESLintPluginGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
+        this.prompt(prompts).then(function(props) {
+            this.pluginId = props.pluginId.replace("eslint-plugin-", "");
+            this.hasRules = props.hasRules;
+            this.hasProcessors = props.hasProcessors;
+            this.desc = props.desc;
+            this.userName = props.userName;
+            this.year = (new Date()).getFullYear();
 
-    var prompts = [{
-        type: "input",
-        name: "userName",
-        message: "What is your name?"
-    }, {
-        type: "input",
-        name: "pluginId",
-        message: "What is the plugin ID?",
-        validate: isPluginId
-    }, {
-        type: "input",
-        name: "desc",
-        message: "Type a short description of this plugin:",
-        validate: isRequired
-    }, {
-        type: "confirm",
-        name: "hasRules",
-        message: "Does this plugin contain custom ESLint rules?",
-        default: true
-    }, {
-        type: "confirm",
-        name: "hasProcessors",
-        message: "Does this plugin contain one or more processors?",
-        default: false
-    }];
+            cb();
 
-    this.prompt(prompts).then(function(props) {
-        this.pluginId = props.pluginId.replace("eslint-plugin-", "");
-        this.hasRules = props.hasRules;
-        this.hasProcessors = props.hasProcessors;
-        this.desc = props.desc;
-        this.userName = props.userName;
-        this.year = (new Date()).getFullYear();
+        }.bind(this));
+    },
 
-        cb();
+    generate: function() {
+        mkdirp.sync("lib");
+        mkdirp.sync("tests");
+        mkdirp.sync("tests/lib");
+        this.fs.copyTpl(
+            this.templatePath("_plugin.js"),
+            this.destinationPath("lib/index.js"),
+            this
+        );
+        this.fs.copyTpl(
+            this.templatePath("_package.json"),
+            this.destinationPath("package.json"),
+            this
+        );
+        this.fs.copyTpl(
+            this.templatePath("_README.md"),
+            this.destinationPath("README.md"),
+            this
+        );
 
-    }.bind(this));
-};
+        if (this.hasRules) {
+            mkdirp.sync("lib/rules");
+            mkdirp.sync("tests/lib/rules");
+        }
 
-ESLintPluginGenerator.prototype.generate = function generate() {
-    mkdirp.sync("lib");
-    mkdirp.sync("tests");
-    mkdirp.sync("tests/lib");
-    this.template("_plugin.js", "lib/index.js");
-    this.template("_package.json", "package.json");
-    this.template("_README.md", "README.md");
-
-    if (this.hasRules) {
-        mkdirp.sync("lib/rules");
-        mkdirp.sync("tests/lib/rules");
+        if (this.hasProcessors) {
+            mkdirp.sync("lib/processors");
+            mkdirp.sync("tests/lib/processors");
+        }
     }
-
-    if (this.hasProcessors) {
-        mkdirp.sync("lib/processors");
-        mkdirp.sync("tests/lib/processors");
-    }
-};
+});

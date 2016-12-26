@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 
 var assert = require("yeoman-assert"),
-    generators = require("yeoman-generator"),
+    Generator = require("yeoman-generator"),
     helpers = require("yeoman-test"),
     path = require("path"),
     sinon = require("sinon");
@@ -25,7 +25,7 @@ describe("ESLint Main Generator", function() {
     before(function(done) {
         this.spy = sandbox.spy();
 
-        this.dummyGenerator = generators.Base.extend({
+        this.dummyGenerator = Generator.extend({
             exec: this.spy
         });
 
