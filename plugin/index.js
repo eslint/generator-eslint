@@ -26,7 +26,7 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 module.exports = Generator.extend({
-    askFor: function() {
+    prompting: function() {
         var cb = this.async();
 
         var prompts = [{
@@ -68,7 +68,7 @@ module.exports = Generator.extend({
         }.bind(this));
     },
 
-    generate: function() {
+    writing: function() {
         mkdirp.sync("lib");
         mkdirp.sync("tests");
         mkdirp.sync("tests/lib");

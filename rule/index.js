@@ -23,7 +23,7 @@ var isRequired = validators.isRequired;
 //------------------------------------------------------------------------------
 
 module.exports = Generator.extend({
-    askFor: function() {
+    prompting: function() {
         var cb = this.async();
 
         var prompts = [{
@@ -67,7 +67,7 @@ module.exports = Generator.extend({
         }.bind(this));
     },
 
-    generate: function() {
+    writing: function() {
         this.fs.copyTpl(
             this.templatePath("_doc.md"),
             this.destinationPath("docs/rules/" + this.ruleId + ".md"),
