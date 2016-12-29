@@ -81,6 +81,7 @@ ESLintPluginGenerator.prototype.generate = function generate() {
     this.template("_plugin.js", "lib/index.js");
     this.template("_package.json", "package.json");
     this.template("_README.md", "README.md");
+    this.template("../../.eslintrc.yml", ".eslintrc.yml");
 
     if (this.hasRules) {
         mkdirp.sync("lib/rules");
