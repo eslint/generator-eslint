@@ -10,7 +10,9 @@
   "author": "<%- userName.replace(/"/g, '\\"') %>",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "lint": "eslint .",
+    "unit-test": "mocha tests --recursive",
+    "test": "npm run lint && npm run unit-test"
   },
   "dependencies": {
     "requireindex": "~1.1.0"

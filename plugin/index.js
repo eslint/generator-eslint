@@ -1,5 +1,5 @@
 /**
- * @fileoverview Rule generator
+ * @fileoverview Plugin generator
  * @author Nicholas C. Zakas
  * @copyright jQuery Foundation and other contributors, https://jquery.org/
  * MIT License
@@ -15,6 +15,7 @@ var mkdirp = require("mkdirp");
 var yeoman = require("yeoman-generator");
 
 var validators = require("../lib/validators");
+
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -28,6 +29,12 @@ var isRequired = validators.isRequired;
 
 var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
     yeoman.Base.apply(this, arguments);
+
+    this.on("end", function() {
+        if (this.selfLinting) {
+            this.spawnCommand("eslint", ["--init"]);
+        }
+    }.bind(this));
 };
 
 util.inherits(ESLintPluginGenerator, yeoman.Base);
@@ -59,6 +66,11 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         name: "hasProcessors",
         message: "Does this plugin contain one or more processors?",
         default: false
+    }, {
+        type: "confirm",
+        name: "selfLinting",
+        message: "Do you want to setup linting for this plugin?",
+        default: true
     }];
 
     this.prompt(prompts, function(props) {
@@ -68,6 +80,7 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         this.desc = props.desc;
         this.userName = props.userName;
         this.year = (new Date()).getFullYear();
+        this.selfLinting = props.selfLinting;
 
         cb();
 
