@@ -16,7 +16,9 @@ var requireIndex = require("requireindex");
 
 <% if (hasRules) { %>
 // import all rules in lib/rules
-module.exports.rules = requireIndex(__dirname + "/rules");
+var rulesDir = require("path").join(__dirname, "/rules");
+
+module.exports.rules = requireIndex(rulesDir);
 <% } %>
 
 <% if (hasProcessors) { %>
