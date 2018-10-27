@@ -23,9 +23,11 @@
   "scripts": {
     "test": "npm run lint && mocha \"tests/**/*.js\"",
     "lint": "eslint .",
-    "release": "eslint-release",
-    "ci-release": "eslint-ci-release",
-    "gh-release": "eslint-gh-release"
+    "generate-release": "eslint-generate-release",
+    "generate-alpharelease": "eslint-generate-prerelease alpha",
+    "generate-betarelease": "eslint-generate-prerelease beta",
+    "generate-rcrelease": "eslint-generate-prerelease rc",
+    "publish-release": "eslint-publish-release"
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
@@ -35,7 +37,7 @@
   "devDependencies": {
     "eslint": "^2.6.0",
     "eslint-config-eslint": "^3.0.0",
-    "eslint-release": "^0.10.1",
+    "eslint-release": "^1.0.0",
     "mocha": "^2.4.5",
     "require-uncached": "^1.0.2",
     "sinon": "^1.17.5",
