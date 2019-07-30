@@ -35,7 +35,7 @@
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
-    "eslint": "^2.6.0",
+    "eslint": "^6.1.0",
     "eslint-config-eslint": "^3.0.0",
     "eslint-release": "^1.0.0",
     "mocha": "^2.4.5",
@@ -48,8 +48,7 @@
     "yo": ">=1.0.0"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=8"
   },
   "license": "MIT"
 }
