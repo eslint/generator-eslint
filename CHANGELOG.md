@@ -1,3 +1,12 @@
+v2.0.0 - June 8, 2020
+
+* [`520cc84`](https://github.com/eslint/generator-eslint/commit/520cc84aa5916e34264b46e159663f219170145d) Chore: Updated the template devDependencies to fix vulnerabilities. (#71) (Ron Perris)
+* [`6900c62`](https://github.com/eslint/generator-eslint/commit/6900c629e27a4966c6e96f0e3b843622c0060bd9) Docs: remove global-installed usage (#69) (薛定谔的猫)
+* [`c07f9d6`](https://github.com/eslint/generator-eslint/commit/c07f9d64aa7af7688ef9fb4ff430dae290866317) Breaking: drop support node < 8 (#68) (薛定谔的猫)
+* [`f591143`](https://github.com/eslint/generator-eslint/commit/f5911434cde5289dc46715d97b2ba500ec800b85) Chore: Use SVG badge in README for readability (#67) (Olle Jonsson)
+* [`51d9529`](https://github.com/eslint/generator-eslint/commit/51d9529404fadf1343e477910fce0240f3d0a0fc) Upgrade: eslint-release@1.0.0 (#66) (Teddy Katz)
+* [`43e6fe2`](https://github.com/eslint/generator-eslint/commit/43e6fe26cca2f19628bb94e34e4430710bad9918) Build: Add appveyor.yml, testing against Node 7 (#60) (Kevin Partington)
+
 v1.2.0 - December 16, 2016
 
 * d9a75e1 Chore: Fix license field in package.json to be valid SPDX string (#57) (Kevin Partington)
