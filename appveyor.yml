@@ -18,7 +18,7 @@ install:
 build: off
 
 test_script:
-  - npm test
+  - npm run lint && npm test
 
 matrix:
   fast_finish: true    # set this flag to immediately finish build once one of the jobs fails.
