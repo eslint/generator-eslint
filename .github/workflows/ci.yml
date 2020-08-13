@@ -26,6 +26,9 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node: [14.x, 13.x, 12.x, 10.x, 8.x]
+        include:
+        - os: windows-latest
+          node: "12.x"
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
