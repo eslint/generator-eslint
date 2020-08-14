@@ -21,7 +21,7 @@
   ],
   "repository": "eslint/generator-eslint",
   "scripts": {
-    "test": "npm run lint && mocha \"tests/**/*.js\"",
+    "test": "mocha \"tests/**/*.js\"",
     "lint": "eslint .",
     "generate-release": "eslint-generate-release",
     "generate-alpharelease": "eslint-generate-prerelease alpha",
