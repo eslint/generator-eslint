@@ -11,7 +11,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var path = require("path"),
+const path = require("path"),
     requireUncached = require("require-uncached"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
@@ -20,11 +20,11 @@ var path = require("path"),
 // Tests
 //------------------------------------------------------------------------------
 
-var testDirectory = path.join(__dirname, "../../temp");
+const testDirectory = path.join(__dirname, "../../temp");
 
-describe("ESLint Plugin Generator", function() {
+describe("ESLint Plugin Generator", () => {
     beforeEach(function(done) {
-        helpers.testDirectory(testDirectory, function(err) {
+        helpers.testDirectory(testDirectory, err => {
             if (err) {
                 return done(err);
             }
@@ -33,12 +33,12 @@ describe("ESLint Plugin Generator", function() {
                 "../plugin"
             ]);
             return done();
-        }.bind(this));
+        });
     });
 
     it("creates expected files when rules are expected", function(done) {
 
-        var expected = [
+        const expected = [
             "lib/rules",
             "tests/lib/rules",
             "lib/index.js",
@@ -54,7 +54,7 @@ describe("ESLint Plugin Generator", function() {
             hasProcessors: false
         });
         this.rule.options["skip-install"] = true;
-        this.rule.run(function() {
+        this.rule.run(() => {
             assert.file(expected);
             done();
         });
@@ -62,7 +62,7 @@ describe("ESLint Plugin Generator", function() {
 
     it("creates expected files when processors are expected", function(done) {
 
-        var expected = [
+        const expected = [
             "lib/processors",
             "tests/lib/processors",
             "lib/index.js",
@@ -78,14 +78,14 @@ describe("ESLint Plugin Generator", function() {
             hasProcessors: true
         });
         this.rule.options["skip-install"] = true;
-        this.rule.run(function() {
+        this.rule.run(() => {
             assert.file(expected);
             done();
         });
     });
 
-    describe("With pathological input", function() {
-        describe("Double quotes in description", function() {
+    describe("With pathological input", () => {
+        describe("Double quotes in description", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "Kevin platinumazure Partington",
@@ -98,7 +98,7 @@ describe("ESLint Plugin Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting package.json", function() {
+            describe("Resulting package.json", () => {
                 beforeEach(function() {
                     this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });
@@ -113,7 +113,7 @@ describe("ESLint Plugin Generator", function() {
             });
         });
 
-        describe("Double quotes in username", function() {
+        describe("Double quotes in username", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "Kevin \"platinumazure\" Partington",
@@ -126,7 +126,7 @@ describe("ESLint Plugin Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting package.json", function() {
+            describe("Resulting package.json", () => {
                 beforeEach(function() {
                     this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });
@@ -141,7 +141,7 @@ describe("ESLint Plugin Generator", function() {
             });
         });
 
-        describe("Single quotes in description", function() {
+        describe("Single quotes in description", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "Kevin platinumazure Partington",
@@ -154,7 +154,7 @@ describe("ESLint Plugin Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting package.json", function() {
+            describe("Resulting package.json", () => {
                 beforeEach(function() {
                     this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });
@@ -169,7 +169,7 @@ describe("ESLint Plugin Generator", function() {
             });
         });
 
-        describe("Single quotes in username", function() {
+        describe("Single quotes in username", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "Kevin 'platinumazure' Partington",
@@ -182,7 +182,7 @@ describe("ESLint Plugin Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting package.json", function() {
+            describe("Resulting package.json", () => {
                 beforeEach(function() {
                     this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
                 });

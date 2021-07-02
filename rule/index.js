@@ -8,31 +8,31 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var util = require("util");
-var yeoman = require("yeoman-generator");
-var validators = require("../lib/validators");
+const util = require("util");
+const yeoman = require("yeoman-generator");
+const validators = require("../lib/validators");
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var isRuleId = validators.isRuleId;
-var isRequired = validators.isRequired;
+const isRuleId = validators.isRuleId;
+const isRequired = validators.isRequired;
 
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintRuleGenerator = module.exports = function ESLintRuleGenerator() {
-    yeoman.Base.apply(this, arguments);
+const ESLintRuleGenerator = module.exports = function ESLintRuleGenerator() {
+    yeoman.Base.apply(this, arguments); // eslint-disable-line prefer-rest-params
 };
 
 util.inherits(ESLintRuleGenerator, yeoman.Base);
 
 ESLintRuleGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
+    const cb = this.async();
 
-    var prompts = [{
+    const prompts = [{
         type: "input",
         name: "userName",
         message: "What is your name?"
@@ -60,7 +60,7 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         message: "Type a short example of the code that will fail:"
     }];
 
-    this.prompt(prompts, function(props) {
+    this.prompt(prompts, props => {
         this.ruleId = props.ruleId;
         this.invalidCode = props.invalidCode;
         this.target = props.target;
@@ -70,11 +70,11 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
 
         cb();
 
-    }.bind(this));
+    });
 };
 
 ESLintRuleGenerator.prototype.generate = function generate() {
-    this.template("_doc.md", "docs/rules/" + this.ruleId + ".md");
-    this.template("_rule.js", "lib/rules/" + this.ruleId + ".js");
-    this.template("_test.js", "tests/lib/rules/" + this.ruleId + ".js");
+    this.template("_doc.md", `docs/rules/${this.ruleId}.md`);
+    this.template("_rule.js", `lib/rules/${this.ruleId}.js`);
+    this.template("_test.js", `tests/lib/rules/${this.ruleId}.js`);
 };

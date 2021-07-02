@@ -5,11 +5,12 @@
 
 "use strict";
 
-var assert = require("assert");
+const assert = require("assert");
 
-describe("eslint generator", function() {
-    it("can be imported without blowing up", function() {
-        var app = require("../rule");
+describe("eslint generator", () => {
+    it("can be imported without blowing up", () => {
+        const app = require("../rule");
+
         assert.ok(app);
     });
 });
