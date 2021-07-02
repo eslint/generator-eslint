@@ -6,16 +6,15 @@
 
 You'll first need to install [ESLint](http://eslint.org):
 
-```
-$ npm i eslint --save-dev
+```sh
+npm i eslint --save-dev
 ```
 
 Next, install `eslint-plugin-<%= pluginId %>`:
 
+```sh
+npm install eslint-plugin-<%= pluginId %> --save-dev
 ```
-$ npm install eslint-plugin-<%= pluginId %> --save-dev
-```
-
 
 ## Usage
 
@@ -45,6 +44,3 @@ Then configure the rules you want to use under the rules section.
 * Fill in provided rules here
 
 <% } %>
-
-
-

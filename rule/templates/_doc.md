@@ -2,7 +2,6 @@
 
 Please describe the origin of the rule here.
 
-
 ## Rule Details
 
 This rule aims to...
