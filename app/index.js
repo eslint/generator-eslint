@@ -10,13 +10,13 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var yeoman = require("yeoman-generator");
+const yeoman = require("yeoman-generator");
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var NAMESPACES = {
+const NAMESPACES = {
     Rule: "eslint:rule",
     Plugin: "eslint:plugin"
 };
@@ -26,8 +26,8 @@ var NAMESPACES = {
 //------------------------------------------------------------------------------
 
 module.exports = yeoman.Base.extend({
-    prompting: function() {
-        var done = this.async();
+    prompting() {
+        const done = this.async();
 
         this.prompt({
             type: "list",
@@ -35,9 +35,9 @@ module.exports = yeoman.Base.extend({
             message: "Do you want to generate a rule or a plugin?",
             choices: ["Rule", "Plugin"],
             default: "Rule"
-        }, function(answers) {
+        }, answers => {
             this.composeWith(NAMESPACES[answers.outputType]);
             done();
-        }.bind(this));
+        });
     }
 });

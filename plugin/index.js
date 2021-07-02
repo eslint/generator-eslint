@@ -10,32 +10,33 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var util = require("util");
-var mkdirp = require("mkdirp");
-var yeoman = require("yeoman-generator");
+const util = require("util");
+const mkdirp = require("mkdirp");
+const yeoman = require("yeoman-generator");
 
-var validators = require("../lib/validators");
+const validators = require("../lib/validators");
+
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-var isPluginId = validators.isPluginId;
-var isRequired = validators.isRequired;
+const isPluginId = validators.isPluginId;
+const isRequired = validators.isRequired;
 
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-var ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
-    yeoman.Base.apply(this, arguments);
+const ESLintPluginGenerator = module.exports = function ESLintPluginGenerator() {
+    yeoman.Base.apply(this, arguments); // eslint-disable-line prefer-rest-params
 };
 
 util.inherits(ESLintPluginGenerator, yeoman.Base);
 
 ESLintPluginGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
+    const cb = this.async();
 
-    var prompts = [{
+    const prompts = [{
         type: "input",
         name: "userName",
         message: "What is your name?"
@@ -61,7 +62,7 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
         default: false
     }];
 
-    this.prompt(prompts, function(props) {
+    this.prompt(prompts, props => {
         this.pluginId = props.pluginId.replace("eslint-plugin-", "");
         this.hasRules = props.hasRules;
         this.hasProcessors = props.hasProcessors;
@@ -71,7 +72,7 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
 
         cb();
 
-    }.bind(this));
+    });
 };
 
 ESLintPluginGenerator.prototype.generate = function generate() {

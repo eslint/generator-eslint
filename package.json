@@ -35,8 +35,8 @@
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-eslint": "^3.0.0",
+    "eslint": "^7.0.0",
+    "eslint-config-eslint": "^7.0.0",
     "eslint-release": "^1.0.0",
     "mocha": "^2.4.5",
     "require-uncached": "^1.0.2",

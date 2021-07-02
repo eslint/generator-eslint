@@ -11,7 +11,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var fs = require("fs"),
+const fs = require("fs"),
     path = require("path"),
     requireUncached = require("require-uncached"),
     helpers = require("yeoman-test"),
@@ -21,11 +21,11 @@ var fs = require("fs"),
 // Tests
 //------------------------------------------------------------------------------
 
-var testDirectory = path.join(__dirname, "../../temp");
+const testDirectory = path.join(__dirname, "../../temp");
 
-describe("ESLint Rule Generator", function() {
+describe("ESLint Rule Generator", () => {
     beforeEach(function(done) {
-        helpers.testDirectory(testDirectory, function(err) {
+        helpers.testDirectory(testDirectory, err => {
             if (err) {
                 return done(err);
             }
@@ -34,12 +34,12 @@ describe("ESLint Rule Generator", function() {
                 "../rule"
             ]);
             return done();
-        }.bind(this));
+        });
     });
 
     it("creates expected files", function(done) {
 
-        var expected = [
+        const expected = [
             "docs/rules/foo-bar.md",
             "lib/rules/foo-bar.js",
             "tests/lib/rules/foo-bar.js"
@@ -53,14 +53,14 @@ describe("ESLint Rule Generator", function() {
             target: "eslint"
         });
         this.rule.options["skip-install"] = true;
-        this.rule.run(function() {
+        this.rule.run(() => {
             assert.file(expected);
             done();
         });
     });
 
-    describe("With pathological input", function() {
-        describe("Double quotes in description", function() {
+    describe("With pathological input", () => {
+        describe("Double quotes in description", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "",
@@ -73,7 +73,7 @@ describe("ESLint Rule Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting rule file", function() {
+            describe("Resulting rule file", () => {
                 beforeEach(function() {
                     this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
                 });
@@ -88,7 +88,7 @@ describe("ESLint Rule Generator", function() {
             });
         });
 
-        describe("Double quotes in code snippet", function() {
+        describe("Double quotes in code snippet", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "",
@@ -101,7 +101,7 @@ describe("ESLint Rule Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting test file", function() {
+            describe("Resulting test file", () => {
                 beforeEach(function() {
                     this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
                 });
@@ -116,7 +116,7 @@ describe("ESLint Rule Generator", function() {
             });
         });
 
-        describe("Single quotes in description", function() {
+        describe("Single quotes in description", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "",
@@ -129,7 +129,7 @@ describe("ESLint Rule Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting rule file", function() {
+            describe("Resulting rule file", () => {
                 beforeEach(function() {
                     this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
                 });
@@ -144,7 +144,7 @@ describe("ESLint Rule Generator", function() {
             });
         });
 
-        describe("Single quotes in code snippet", function() {
+        describe("Single quotes in code snippet", () => {
             beforeEach(function(done) {
                 helpers.mockPrompt(this.rule, {
                     userName: "",
@@ -157,7 +157,7 @@ describe("ESLint Rule Generator", function() {
                 this.rule.run(done);
             });
 
-            describe("Resulting test file", function() {
+            describe("Resulting test file", () => {
                 beforeEach(function() {
                     this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
                 });

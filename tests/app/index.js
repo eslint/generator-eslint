@@ -9,7 +9,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("yeoman-assert"),
+const assert = require("yeoman-assert"),
     generators = require("yeoman-generator"),
     helpers = require("yeoman-test"),
     path = require("path"),
@@ -19,8 +19,8 @@ var assert = require("yeoman-assert"),
 // Tests
 //------------------------------------------------------------------------------
 
-describe("ESLint Main Generator", function() {
-    var sandbox = sinon.sandbox.create();
+describe("ESLint Main Generator", () => {
+    const sandbox = sinon.sandbox.create();
 
     before(function(done) {
         this.spy = sandbox.spy();
@@ -36,7 +36,7 @@ describe("ESLint Main Generator", function() {
         this.spy.reset();
     });
 
-    describe("User answers with Plugin", function() {
+    describe("User answers with Plugin", () => {
         beforeEach(function(done) {
 
             /*
@@ -68,7 +68,7 @@ describe("ESLint Main Generator", function() {
         });
     });
 
-    describe("User answers with Rule", function() {
+    describe("User answers with Rule", () => {
         beforeEach(function(done) {
 
             /*
@@ -100,4 +100,3 @@ describe("ESLint Main Generator", function() {
         });
     });
 });
-
