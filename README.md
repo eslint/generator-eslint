@@ -1,4 +1,4 @@
-# generator-eslint [![Build Status](https://secure.travis-ci.org/eslint/generator-eslint.svg?branch=master)](https://travis-ci.org/eslint/generator-eslint)
+# generator-eslint [![Build Status](https://secure.travis-ci.org/eslint/generator-eslint.svg?branch=master)](https://travis-ci.org/eslint/generator-eslint) [![NPM version](https://img.shields.io/npm/v/generator-eslint.svg?style=flat)](https://npmjs.org/package/generator-eslint)
 
 The ESLint generator for [Yeoman](http://yeoman.io). This generator is intended to aid development within the [ESLint](http://eslint.org) project. It is designed to work within the top-level `eslint` directory.
 
