@@ -20,7 +20,7 @@ const assert = require("yeoman-assert"),
 //------------------------------------------------------------------------------
 
 describe("ESLint Main Generator", () => {
-    const sandbox = sinon.sandbox.create();
+    const sandbox = sinon.createSandbox();
 
     before(function(done) {
         this.spy = sandbox.spy();
@@ -33,7 +33,7 @@ describe("ESLint Main Generator", () => {
     });
 
     beforeEach(function() {
-        this.spy.reset();
+        this.spy.resetHistory();
     });
 
     describe("User answers with Plugin", () => {
