@@ -12,7 +12,7 @@
 //------------------------------------------------------------------------------
 
 const path = require("path"),
-    requireUncached = require("require-uncached"),
+    importFresh = require("import-fresh"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -100,7 +100,7 @@ describe("ESLint Plugin Generator", () => {
 
             describe("Resulting package.json", () => {
                 beforeEach(function() {
-                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
@@ -128,7 +128,7 @@ describe("ESLint Plugin Generator", () => {
 
             describe("Resulting package.json", () => {
                 beforeEach(function() {
-                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
@@ -156,7 +156,7 @@ describe("ESLint Plugin Generator", () => {
 
             describe("Resulting package.json", () => {
                 beforeEach(function() {
-                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
@@ -184,7 +184,7 @@ describe("ESLint Plugin Generator", () => {
 
             describe("Resulting package.json", () => {
                 beforeEach(function() {
-                    this.resultPackageJson = requireUncached(path.join(testDirectory, "package.json"));
+                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
                 });
 
                 it("should be requireable", function() {
