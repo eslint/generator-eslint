@@ -11,8 +11,8 @@
 //------------------------------------------------------------------------------
 
 const util = require("util");
-const mkdirp = require("mkdirp");
 const yeoman = require("yeoman-generator");
+const { mkdirSync } = require("fs");
 
 const validators = require("../lib/validators");
 
@@ -76,21 +76,21 @@ ESLintPluginGenerator.prototype.askFor = function askFor() {
 };
 
 ESLintPluginGenerator.prototype.generate = function generate() {
-    mkdirp.sync("lib");
-    mkdirp.sync("tests");
-    mkdirp.sync("tests/lib");
+    mkdirSync("lib", { recursive: true });
+    mkdirSync("tests", { recursive: true });
+    mkdirSync("tests/lib", { recursive: true });
     this.template("_.eslintrc.js", ".eslintrc.js");
     this.template("_plugin.js", "lib/index.js");
     this.template("_package.json", "package.json");
     this.template("_README.md", "README.md");
 
     if (this.hasRules) {
-        mkdirp.sync("lib/rules");
-        mkdirp.sync("tests/lib/rules");
+        mkdirSync("lib/rules", { recursive: true });
+        mkdirSync("tests/lib/rules", { recursive: true });
     }
 
     if (this.hasProcessors) {
-        mkdirp.sync("lib/processors");
-        mkdirp.sync("tests/lib/processors");
+        mkdirSync("lib/processors", { recursive: true });
+        mkdirSync("tests/lib/processors", { recursive: true });
     }
 };
