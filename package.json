@@ -30,7 +30,6 @@
     "publish-release": "eslint-publish-release"
   },
   "dependencies": {
-    "mkdirp": "^0.5.1",
     "run-async": "2.2.x",
     "yeoman-generator": "^0.22.5"
   },
