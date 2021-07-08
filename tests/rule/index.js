@@ -13,7 +13,7 @@
 
 const fs = require("fs"),
     path = require("path"),
-    requireUncached = require("require-uncached"),
+    importFresh = require("import-fresh"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -75,7 +75,7 @@ describe("ESLint Rule Generator", () => {
 
             describe("Resulting rule file", () => {
                 beforeEach(function() {
-                    this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
+                    this.resultRuleModule = importFresh(path.join(testDirectory, "lib", "rules", "test-rule"));
                 });
 
                 it("should be requireable", function() {
@@ -131,7 +131,7 @@ describe("ESLint Rule Generator", () => {
 
             describe("Resulting rule file", () => {
                 beforeEach(function() {
-                    this.resultRuleModule = requireUncached(path.join(testDirectory, "lib", "rules", "test-rule"));
+                    this.resultRuleModule = importFresh(path.join(testDirectory, "lib", "rules", "test-rule"));
                 });
 
                 it("should be requireable", function() {
