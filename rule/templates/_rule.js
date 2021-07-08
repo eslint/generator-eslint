@@ -10,6 +10,7 @@
 
 module.exports = {
     meta: {
+        type: null, // `problem`, `suggestion`, or `layout`
         docs: {
             description: "<%- desc.replace(/"/g, '\\"') %>",
             category: "Fill me in",
