@@ -41,8 +41,8 @@ ESLintRuleGenerator.prototype.askFor = function askFor() {
         name: "target",
         message: "Where will this rule be published?",
         choices: [
-            { name: "ESLint Core", value: "eslint" },
-            { name: "ESLint Plugin", value: "plugin" }
+            { name: "ESLint Plugin", value: "plugin" },
+            { name: "ESLint Core", value: "eslint" }
         ]
     }, {
         type: "input",
