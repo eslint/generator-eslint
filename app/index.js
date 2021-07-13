@@ -10,7 +10,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const yeoman = require("yeoman-generator");
+const Generator = require("yeoman-generator");
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -25,19 +25,16 @@ const NAMESPACES = {
 // Constructor
 //------------------------------------------------------------------------------
 
-module.exports = yeoman.Base.extend({
-    prompting() {
-        const done = this.async();
-
-        this.prompt({
+module.exports = class extends Generator {
+    async prompting() {
+        const answers = await this.prompt({
             type: "list",
             name: "outputType",
             message: "Do you want to generate a rule or a plugin?",
             choices: ["Rule", "Plugin"],
             default: "Rule"
-        }, answers => {
-            this.composeWith(NAMESPACES[answers.outputType]);
-            done();
         });
+
+        this.composeWith(NAMESPACES[answers.outputType]);
     }
-});
+};

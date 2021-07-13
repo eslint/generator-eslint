@@ -8,8 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const util = require("util");
-const yeoman = require("yeoman-generator");
+const Generator = require("yeoman-generator");
 const validators = require("../lib/validators");
 
 //------------------------------------------------------------------------------
@@ -23,58 +22,44 @@ const isRequired = validators.isRequired;
 // Constructor
 //------------------------------------------------------------------------------
 
-const ESLintRuleGenerator = module.exports = function ESLintRuleGenerator() {
-    yeoman.Base.apply(this, arguments); // eslint-disable-line prefer-rest-params
-};
+module.exports = class extends Generator {
+    async prompting() {
+        const prompts = [
+            {
+                type: "input",
+                name: "userName",
+                message: "What is your name?"
+            }, {
+                type: "list",
+                name: "target",
+                message: "Where will this rule be published?",
+                choices: [
+                    { name: "ESLint Plugin", value: "plugin" },
+                    { name: "ESLint Core", value: "eslint" }
+                ]
+            }, {
+                type: "input",
+                name: "ruleId",
+                message: "What is the rule ID?",
+                validate: isRuleId
+            }, {
+                type: "input",
+                name: "desc",
+                message: "Type a short description of this rule:",
+                validate: isRequired
+            }, {
+                type: "input",
+                name: "invalidCode",
+                message: "Type a short example of the code that will fail:"
+            }
+        ];
 
-util.inherits(ESLintRuleGenerator, yeoman.Base);
+        this.answers = await this.prompt(prompts);
+    }
 
-ESLintRuleGenerator.prototype.askFor = function askFor() {
-    const cb = this.async();
-
-    const prompts = [{
-        type: "input",
-        name: "userName",
-        message: "What is your name?"
-    }, {
-        type: "list",
-        name: "target",
-        message: "Where will this rule be published?",
-        choices: [
-            { name: "ESLint Plugin", value: "plugin" },
-            { name: "ESLint Core", value: "eslint" }
-        ]
-    }, {
-        type: "input",
-        name: "ruleId",
-        message: "What is the rule ID?",
-        validate: isRuleId
-    }, {
-        type: "input",
-        name: "desc",
-        message: "Type a short description of this rule:",
-        validate: isRequired
-    }, {
-        type: "input",
-        name: "invalidCode",
-        message: "Type a short example of the code that will fail:"
-    }];
-
-    this.prompt(prompts, props => {
-        this.ruleId = props.ruleId;
-        this.invalidCode = props.invalidCode;
-        this.target = props.target;
-        this.desc = props.desc;
-        this.userName = props.userName;
-        this.year = (new Date()).getFullYear();
-
-        cb();
-
-    });
-};
-
-ESLintRuleGenerator.prototype.generate = function generate() {
-    this.template("_doc.md", `docs/rules/${this.ruleId}.md`);
-    this.template("_rule.js", `lib/rules/${this.ruleId}.js`);
-    this.template("_test.js", `tests/lib/rules/${this.ruleId}.js`);
+    writing() {
+        this.fs.copyTpl(this.templatePath("_doc.md"), this.destinationPath("docs", "rules", `${this.answers.ruleId}.md`), this.answers);
+        this.fs.copyTpl(this.templatePath("_rule.js"), this.destinationPath("lib", "rules", `${this.answers.ruleId}.js`), this.answers);
+        this.fs.copyTpl(this.templatePath("_test.js"), this.destinationPath("tests", "lib", "rules", `${this.answers.ruleId}.js`), this.answers);
+    }
 };
