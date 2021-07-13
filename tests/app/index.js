@@ -2,7 +2,7 @@
  * @fileoverview Main generator tests
  * @author Kevin Partington
  */
-/* eslint no-invalid-this:0 */
+
 "use strict";
 
 //------------------------------------------------------------------------------
@@ -10,93 +10,76 @@
 //------------------------------------------------------------------------------
 
 const assert = require("yeoman-assert"),
-    generators = require("yeoman-generator"),
     helpers = require("yeoman-test"),
-    path = require("path"),
-    sinon = require("sinon");
+    path = require("path");
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
+const APP_GENERATOR_PATH = path.join(__dirname, "..", "..", "app");
+const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule");
+const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "..", "plugin");
+
 describe("ESLint Main Generator", () => {
-    const sandbox = sinon.createSandbox();
-
-    before(function(done) {
-        this.spy = sandbox.spy();
-
-        this.dummyGenerator = generators.Base.extend({
-            exec: this.spy
-        });
-
-        helpers.testDirectory(path.join(__dirname, "../../temp"), done);
-    });
-
-    beforeEach(function() {
-        this.spy.resetHistory();
-    });
-
     describe("User answers with Plugin", () => {
-        beforeEach(function(done) {
-
-            /*
-             * Adapted from:
-             * http://stackoverflow.com/questions/27643601/testing-yeomans-composewith
-             * Adapted to use createGenerator and the .run() method on generator
-             * instances. The idea is that the dummyGenerator is being assigned
-             * the namespace "eslint:plugin" for this test, so when the main
-             * generator invokes "eslint:plugin", it will run our
-             * dummyGenerator's exec() function and thus call our spy.
-             */
-
-            this.eslintGenerator = helpers.createGenerator("eslint", [
-                "../app",
-                [this.dummyGenerator, "eslint:plugin"]
-            ]);
-
-            helpers.mockPrompt(this.eslintGenerator, {
-                outputType: "Plugin"
-            });
-
-            this.eslintGenerator.options["skip-install"] = true;
-
-            this.eslintGenerator.run(done);
+        beforeEach(async () => {
+            await helpers.run(APP_GENERATOR_PATH)
+                .withPrompts({
+                    outputType: "Plugin",
+                    userName: "John Doe",
+                    pluginId: "foo-bar",
+                    desc: "my description",
+                    hasRules: false,
+                    hasProcessors: false
+                })
+                .withOptions({ "skip-install": true })
+                .withGenerators([
+                    RULE_GENERATOR_PATH,
+                    PLUGIN_GENERATOR_PATH
+                ]);
         });
 
-        it("should run the eslint:plugin generator", function() {
-            assert.ok(this.spy.calledOnce);
+        // Just make sure the Plugin generator ran. More thorough tests are in the separate Plugin test file.
+        it("creates expected files", () => {
+            const expected = [
+                "lib/index.js",
+                "package.json",
+                "README.md",
+                ".eslintrc.js"
+            ];
+
+            assert.file(expected);
         });
     });
 
     describe("User answers with Rule", () => {
-        beforeEach(function(done) {
-
-            /*
-             * Adapted from:
-             * http://stackoverflow.com/questions/27643601/testing-yeomans-composewith
-             * Adapted to use createGenerator and the .run() method on generator
-             * instances. The idea is that the dummyGenerator is being assigned
-             * the namespace "eslint:rule" for this test, so when the main
-             * generator invokes "eslint:rule", it will run our dummyGenerator's
-             * exec() function and thus call our spy.
-             */
-
-            this.eslintGenerator = helpers.createGenerator("eslint", [
-                "../app",
-                [this.dummyGenerator, "eslint:rule"]
-            ]);
-
-            helpers.mockPrompt(this.eslintGenerator, {
-                outputType: "Rule"
-            });
-
-            this.eslintGenerator.options["skip-install"] = true;
-
-            this.eslintGenerator.run(done);
+        beforeEach(async () => {
+            await helpers.run(APP_GENERATOR_PATH)
+                .withPrompts({
+                    outputType: "Rule",
+                    userName: "John Doe",
+                    ruleId: "no-unused-vars",
+                    desc: "Don't include unused variables.",
+                    invalidCode: "x;",
+                    target: "plugin"
+                })
+                .withOptions({ "skip-install": true })
+                .withGenerators([
+                    RULE_GENERATOR_PATH,
+                    PLUGIN_GENERATOR_PATH
+                ]);
         });
 
-        it("should run the eslint:rule generator", function() {
-            assert.ok(this.spy.calledOnce);
+        // Just make sure the Rule generator ran. More thorough tests are in the separate Rule test file.
+        it("creates expected files", async () => {
+            const expected = [
+                "docs/rules/no-unused-vars.md",
+                "lib/rules/no-unused-vars.js",
+                "tests/lib/rules/no-unused-vars.js"
+            ];
+
+            assert.file(expected);
         });
     });
 });
