@@ -18,9 +18,7 @@ module.exports = {
             url: null, // URL to the documentation page for this rule
         },
         fixable: null,  // or "code" or "whitespace"
-        schema: [
-            // fill in your schema
-        ]
+        schema: [], // Add a schema if the rule has options
     },
 
     create: function(context) {
