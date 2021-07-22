@@ -9,36 +9,33 @@
 //------------------------------------------------------------------------------
 
 module.exports = {
-    meta: {
-        type: null, // `problem`, `suggestion`, or `layout`
-        docs: {
-            description: "<%- desc.replace(/"/g, '\\"') %>",
-            category: "Fill me in",
-            recommended: false,
-            url: null, // URL to the documentation page for this rule
-        },
-        fixable: null,  // or "code" or "whitespace"
-        schema: [], // Add a schema if the rule has options
+  meta: {
+    type: null, // `problem`, `suggestion`, or `layout`
+    docs: {
+      description: "<%- desc.replace(/"/g, '\\"') %>",
+      category: "Fill me in",
+      recommended: false,
+      url: null, // URL to the documentation page for this rule
     },
+    fixable: null, // Or `code` or `whitespace`
+    schema: [], // Add a schema if the rule has options
+  },
 
-    create: function(context) {
+  create(context) {
+    // variables should be defined here
 
-        // variables should be defined here
+    //----------------------------------------------------------------------
+    // Helpers
+    //----------------------------------------------------------------------
 
-        //----------------------------------------------------------------------
-        // Helpers
-        //----------------------------------------------------------------------
+    // any helper functions should go here or else delete this section
 
-        // any helper functions should go here or else delete this section
+    //----------------------------------------------------------------------
+    // Public
+    //----------------------------------------------------------------------
 
-        //----------------------------------------------------------------------
-        // Public
-        //----------------------------------------------------------------------
-
-        return {
-
-            // give me methods
-
-        };
-    }
+    return {
+      // visitor functions for different types of nodes
+    };
+  },
 };

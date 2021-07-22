@@ -22,7 +22,6 @@ module.exports.rules = requireIndex(__dirname + "/rules");
 <% if (hasProcessors) { %>
 // import processors
 module.exports.processors = {
-
-    // add your processors here
+  // add your processors here
 };
 <% } %>
