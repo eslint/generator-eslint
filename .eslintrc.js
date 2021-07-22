@@ -3,7 +3,8 @@
 module.exports = {
     root: true,
     extends: [
-        "eslint"
+        "eslint",
+        "plugin:eslint-comments/recommended"
     ],
     env: {
         node: true
