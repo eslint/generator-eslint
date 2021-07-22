@@ -1,10 +1,10 @@
 # generator-eslint ![CI](https://github.com/eslint/generator-eslint/workflows/CI/badge.svg) [![NPM version](https://img.shields.io/npm/v/generator-eslint.svg?style=flat)](https://npmjs.org/package/generator-eslint)
 
-The ESLint generator for [Yeoman](http://yeoman.io). This generator is intended to aid development within the [ESLint](http://eslint.org) project. It is designed to work within the top-level `eslint` directory.
+The ESLint generator for [Yeoman](https://yeoman.io/). This generator is intended to aid development within the [ESLint](https://eslint.org/) project. It is designed to work within the top-level `eslint` directory.
 
 ## Installation
 
-First and foremost, you must have [Node.js](http://nodejs.org) and npm installed. If you don't have Node.js installed, please download and install the latest version.
+First and foremost, you must have [Node.js](https://nodejs.org/) and npm installed. If you don't have Node.js installed, please download and install the latest version.
 
 You must also install Yeoman, if you don't have it installed already. To install Yeoman, you can run this command:
 
@@ -46,4 +46,4 @@ You'll be prompted for some information and then it will generate the files nece
 
 Copyright jQuery Foundation and other contributors, <https://jquery.org/>
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[MIT License](https://en.wikipedia.org/wiki/MIT_License)
