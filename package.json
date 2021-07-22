@@ -32,22 +32,21 @@
     "publish-release": "eslint-publish-release"
   },
   "dependencies": {
-    "yeoman-generator": "^0.22.5"
+    "yeoman-generator": "^5.4.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
     "eslint-config-eslint": "^7.0.0",
     "eslint-release": "^3.0.0",
-    "import-fresh": "^3.0.0",
     "markdownlint-cli": "^0.27.1",
     "mocha": "^9.0.0",
     "npm-run-all": "^4.1.5",
-    "sinon": "^11.0.0",
-    "yeoman-assert": "^2.1.2",
-    "yeoman-test": "^1.1.0"
+    "yeoman-assert": "^3.1.1",
+    "yeoman-environment": "^3.5.1",
+    "yeoman-test": "^6.2.0"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=4.0.0"
   },
   "engines": {
     "node": "12.x || 14.x || >= 16"

@@ -3,17 +3,13 @@
  * @author Nicholas C. Zakas
  */
 
-/* eslint no-invalid-this:0 */
-
 "use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const fs = require("fs"),
-    path = require("path"),
-    importFresh = require("import-fresh"),
+const path = require("path"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -21,154 +17,137 @@ const fs = require("fs"),
 // Tests
 //------------------------------------------------------------------------------
 
-const testDirectory = path.join(__dirname, "../../temp");
+const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule", "index.js");
 
 describe("ESLint Rule Generator", () => {
-    beforeEach(function(done) {
-        helpers.testDirectory(testDirectory, err => {
-            if (err) {
-                return done(err);
-            }
+    describe("general case", () => {
+        beforeEach(async () => {
+            await helpers.run(RULE_GENERATOR_PATH)
+                .withPrompts({
+                    userName: "John Doe",
+                    ruleId: "no-unused-vars",
+                    desc: "Don't include unused variables.",
+                    invalidCode: "x;",
+                    target: "plugin"
+                })
+                .withOptions({ "skip-install": true });
+        });
 
-            this.rule = helpers.createGenerator("eslint:rule", [
-                "../rule"
-            ]);
-            return done();
+        it("creates expected files", async () => {
+            const expected = [
+                "docs/rules/no-unused-vars.md",
+                "lib/rules/no-unused-vars.js",
+                "tests/lib/rules/no-unused-vars.js"
+            ];
+
+            assert.file(expected);
+        });
+
+        it("has correct rule implementation file contents", () => {
+            assert.fileContent("lib/rules/no-unused-vars.js", "description: \"Don't include unused variables.\"");
+            assert.fileContent("lib/rules/no-unused-vars.js", "@fileoverview Don't include unused variables.");
+            assert.fileContent("lib/rules/no-unused-vars.js", "@author John Doe");
+        });
+
+        it("has correct rule doc file contents", () => {
+            assert.fileContent("docs/rules/no-unused-vars.md", "# Don&#39;t include unused variables. (no-unused-vars)");
+        });
+
+        it("has correct rule test file contents", () => {
+            assert.fileContent("tests/lib/rules/no-unused-vars.js", "RuleTester = require(\"eslint\").RuleTester;");
+            assert.fileContent("tests/lib/rules/no-unused-vars.js", "ruleTester.run(\"no-unused-vars\", rule, {");
+            assert.fileContent("tests/lib/rules/no-unused-vars.js", "code: \"x;\"");
         });
     });
 
-    it("creates expected files", function(done) {
-
-        const expected = [
-            "docs/rules/foo-bar.md",
-            "lib/rules/foo-bar.js",
-            "tests/lib/rules/foo-bar.js"
-        ];
-
-        helpers.mockPrompt(this.rule, {
-            userName: "Foo Bar",
-            ruleId: "foo-bar",
-            desc: "My foo",
-            invalidCode: "var x;",
-            target: "eslint"
+    describe("when generating an ESLint core rule", () => {
+        beforeEach(async () => {
+            await helpers.run(RULE_GENERATOR_PATH)
+                .withPrompts({
+                    userName: "John Doe",
+                    ruleId: "no-unused-vars",
+                    desc: "Don't include unused variables.",
+                    invalidCode: "var x = \"foo\";",
+                    target: "eslint"
+                })
+                .withOptions({ "skip-install": true });
         });
-        this.rule.options["skip-install"] = true;
-        this.rule.run(() => {
-            assert.file(expected);
-            done();
+
+        it("has correct rule test file contents", () => {
+            assert.fileContent("tests/lib/rules/no-unused-vars.js", "RuleTester = require(\"../../../lib/testers/rule-tester\");");
         });
     });
 
     describe("With pathological input", () => {
         describe("Double quotes in description", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "",
-                    ruleId: "test-rule",
-                    desc: "My \"foo\"",
-                    invalidCode: "var x;",
-                    target: "eslint"
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(RULE_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        ruleId: "no-unused-vars",
+                        desc: "My \"foo\"",
+                        invalidCode: "x;",
+                        target: "plugin"
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting rule file", () => {
-                beforeEach(function() {
-                    this.resultRuleModule = importFresh(path.join(testDirectory, "lib", "rules", "test-rule"));
-                });
-
-                it("should be requireable", function() {
-                    assert.ok(this.resultRuleModule);
-                });
-
-                it("should have correct description", function() {
-                    assert.strictEqual(this.resultRuleModule.meta.docs.description, "My \"foo\"");
-                });
+            it("has correct description", () => {
+                assert.fileContent("lib/rules/no-unused-vars.js", "description: \"My \\\"foo\\\"\"");
             });
         });
 
         describe("Double quotes in code snippet", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "",
-                    ruleId: "test-rule",
-                    desc: "My foo",
-                    invalidCode: "var x = \"foo\";",
-                    target: "eslint"
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(RULE_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        ruleId: "no-unused-vars",
+                        desc: "Don't include unused variables.",
+                        invalidCode: "var x = \"foo\";",
+                        target: "plugin"
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting test file", () => {
-                beforeEach(function() {
-                    this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
-                });
-
-                it("should be readable", function() {
-                    assert.ok(this.resultTestModuleContent);
-                });
-
-                it("should have correct code snippet", function() {
-                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = \\\"foo\\\";\"") > -1);
-                });
+            it("has correct code snippet", () => {
+                assert.fileContent("tests/lib/rules/no-unused-vars.js", "code: \"var x = \\\"foo\\\";\"");
             });
         });
 
         describe("Single quotes in description", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "",
-                    ruleId: "test-rule",
-                    desc: "My 'foo'",
-                    invalidCode: "var x;",
-                    target: "eslint"
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(RULE_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        ruleId: "no-unused-vars",
+                        desc: "My 'foo'",
+                        invalidCode: "x;",
+                        target: "plugin"
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting rule file", () => {
-                beforeEach(function() {
-                    this.resultRuleModule = importFresh(path.join(testDirectory, "lib", "rules", "test-rule"));
-                });
-
-                it("should be requireable", function() {
-                    assert.ok(this.resultRuleModule);
-                });
-
-                it("should have correct description", function() {
-                    assert.strictEqual(this.resultRuleModule.meta.docs.description, "My 'foo'");
-                });
+            it("has correct description", () => {
+                assert.fileContent("lib/rules/no-unused-vars.js", "description: \"My 'foo'\"");
             });
         });
 
         describe("Single quotes in code snippet", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "",
-                    ruleId: "test-rule",
-                    desc: "My foo",
-                    invalidCode: "var x = 'foo';",
-                    target: "eslint"
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(RULE_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        ruleId: "no-unused-vars",
+                        desc: "Don't include unused variables.",
+                        invalidCode: "var x = 'foo';",
+                        target: "plugin"
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting test file", () => {
-                beforeEach(function() {
-                    this.resultTestModuleContent = fs.readFileSync(path.join(testDirectory, "tests", "lib", "rules", "test-rule.js"), "utf8");
-                });
-
-                it("should be readable", function() {
-                    assert.ok(this.resultTestModuleContent);
-                });
-
-                it("should have correct code snippet", function() {
-                    assert.ok(this.resultTestModuleContent.indexOf("code: \"var x = 'foo';\"") > -1);
-                });
+            it("has correct code snippet", () => {
+                assert.fileContent("tests/lib/rules/no-unused-vars.js", "code: \"var x = 'foo';\"");
             });
         });
     });

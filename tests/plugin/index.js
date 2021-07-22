@@ -3,8 +3,6 @@
  * @author Nicholas C. Zakas
  */
 
-/* eslint no-invalid-this:0 */
-
 "use strict";
 
 //------------------------------------------------------------------------------
@@ -12,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 const path = require("path"),
-    importFresh = require("import-fresh"),
     helpers = require("yeoman-test"),
     assert = require("yeoman-assert");
 
@@ -20,180 +17,217 @@ const path = require("path"),
 // Tests
 //------------------------------------------------------------------------------
 
-const testDirectory = path.join(__dirname, "../../temp");
+const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "..", "plugin", "index.js");
 
 describe("ESLint Plugin Generator", () => {
-    beforeEach(function(done) {
-        helpers.testDirectory(testDirectory, err => {
-            if (err) {
-                return done(err);
-            }
+    describe("general case", () => {
+        beforeEach(async () => {
+            await helpers.run(PLUGIN_GENERATOR_PATH)
+                .withPrompts({
+                    userName: "John Doe",
+                    pluginId: "foo-bar",
+                    desc: "my description",
+                    hasRules: false,
+                    hasProcessors: false
+                })
+                .withOptions({ "skip-install": true });
+        });
 
-            this.rule = helpers.createGenerator("eslint:plugin", [
-                "../plugin"
-            ]);
-            return done();
+        it("creates expected files", () => {
+            const expected = [
+                "lib/index.js",
+                "package.json",
+                "README.md",
+                ".eslintrc.js"
+            ];
+
+            assert.file(expected);
+        });
+
+        it("has correct package.json", () => {
+            assert.jsonFileContent("package.json", {
+                name: "eslint-plugin-foo-bar",
+                author: "John Doe",
+                description: "my description"
+            });
+        });
+
+        it("has correct README.md", () => {
+            assert.fileContent("README.md", "# eslint-plugin-foo-bar");
+            assert.fileContent("README.md", "Next, install `eslint-plugin-foo-bar`:");
+            assert.fileContent("README.md", "npm install eslint-plugin-foo-bar --save-dev");
+            assert.fileContent("README.md", "Add `foo-bar` to the plugins section");
+
+            assert.noFileContent("README.md", "Then configure the rules you want to use under the rules section.");
+        });
+
+        it("has correct lib/index.js", () => {
+            assert.noFileContent("lib/index.js", "module.exports.processors = {");
+            assert.noFileContent("lib/index.js", "module.exports.rules = requireIndex(__dirname + \"/rules\");");
+
+            assert.fileContent("lib/index.js", "@fileoverview my description");
+            assert.fileContent("lib/index.js", "@author John Doe");
         });
     });
 
-    it("creates expected files when rules are expected", function(done) {
-
-        const expected = [
-            "lib/rules",
-            "tests/lib/rules",
-            "lib/index.js",
-            "package.json",
-            "README.md"
-        ];
-
-        helpers.mockPrompt(this.rule, {
-            userName: "Foo Bar",
-            pluginId: "foo-bar",
-            desc: "My foo",
-            hasRules: true,
-            hasProcessors: false
+    describe("when rules are expected", () => {
+        beforeEach(async () => {
+            await helpers.run(PLUGIN_GENERATOR_PATH)
+                .withPrompts({
+                    userName: "John Doe",
+                    pluginId: "foo-bar",
+                    desc: "my description",
+                    hasRules: true,
+                    hasProcessors: false
+                })
+                .withOptions({ "skip-install": true });
         });
-        this.rule.options["skip-install"] = true;
-        this.rule.run(() => {
+
+        it("creates expected files", () => {
+            const expected = [
+                "lib/rules",
+                "tests/lib/rules",
+                "lib/index.js",
+                "package.json",
+                "README.md"
+            ];
+
             assert.file(expected);
-            done();
+        });
+
+        it("has correct lib/index.js", () => {
+            assert.fileContent("lib/index.js", "module.exports.rules = requireIndex(__dirname + \"/rules\");");
+            assert.noFileContent("lib/index.js", "module.exports.processors = {");
+        });
+
+        it("has correct README.md", () => {
+            assert.fileContent("README.md", "\"foo-bar/rule-name\": 2");
         });
     });
 
-    it("creates expected files when processors are expected", function(done) {
-
-        const expected = [
-            "lib/processors",
-            "tests/lib/processors",
-            "lib/index.js",
-            "package.json",
-            "README.md"
-        ];
-
-        helpers.mockPrompt(this.rule, {
-            userName: "Foo Bar",
-            pluginId: "eslint-plugin-foo-bar",
-            desc: "My foo",
-            hasRules: false,
-            hasProcessors: true
+    describe("when processors are expected", () => {
+        beforeEach(async () => {
+            await helpers.run(PLUGIN_GENERATOR_PATH)
+                .withPrompts({
+                    userName: "John Doe",
+                    pluginId: "foo-bar",
+                    desc: "my description",
+                    hasRules: false,
+                    hasProcessors: true
+                })
+                .withOptions({ "skip-install": true });
         });
-        this.rule.options["skip-install"] = true;
-        this.rule.run(() => {
+
+        it("creates expected files", () => {
+            const expected = [
+                "lib/processors",
+                "tests/lib/processors",
+                "lib/index.js",
+                "package.json",
+                "README.md"
+            ];
+
             assert.file(expected);
-            done();
+        });
+
+        it("has correct lib/index.js", () => {
+            assert.fileContent("lib/index.js", "module.exports.processors = {");
+            assert.noFileContent("lib/index.js", "module.exports.rules = requireIndex(__dirname + \"/rules\");");
+        });
+
+        it("has correct README.md", () => {
+            assert.noFileContent("README.md", "\"foo-bar/rule-name\": 2");
         });
     });
 
     describe("With pathological input", () => {
-        describe("Double quotes in description", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "Kevin platinumazure Partington",
-                    pluginId: "test-plugin",
-                    desc: "My \"foo\"",
-                    hasRules: false,
-                    hasProcessors: false
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+        describe("With eslint-plugin prefix provided in plugin ID", () => {
+            beforeEach(async () => {
+                await helpers.run(PLUGIN_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        pluginId: "eslint-plugin-foo-bar",
+                        desc: "my description",
+                        hasRules: false,
+                        hasProcessors: false
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting package.json", () => {
-                beforeEach(function() {
-                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
-                });
+            it("has correct package.json", () => {
+                assert.jsonFileContent("package.json", { name: "eslint-plugin-foo-bar" });
+            });
+        });
 
-                it("should be requireable", function() {
-                    assert.ok(this.resultPackageJson);
-                });
+        describe("Double quotes in description", () => {
+            beforeEach(async () => {
+                await helpers.run(PLUGIN_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        pluginId: "foo-bar",
+                        desc: "My \"foo\"",
+                        hasRules: false,
+                        hasProcessors: false
+                    })
+                    .withOptions({ "skip-install": true });
+            });
 
-                it("should have correct description", function() {
-                    assert.strictEqual(this.resultPackageJson.description, "My \"foo\"");
-                });
+            it("has correct package.json", () => {
+                assert.jsonFileContent("package.json", { description: "My \"foo\"" });
             });
         });
 
         describe("Double quotes in username", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "Kevin \"platinumazure\" Partington",
-                    pluginId: "test-plugin",
-                    desc: "My foo",
-                    hasRules: false,
-                    hasProcessors: false
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(PLUGIN_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "Kevin \"platinumazure\" Partington",
+                        pluginId: "foo-bar",
+                        desc: "my description",
+                        hasRules: false,
+                        hasProcessors: false
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting package.json", () => {
-                beforeEach(function() {
-                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
-                });
-
-                it("should be requireable", function() {
-                    assert.ok(this.resultPackageJson);
-                });
-
-                it("should have correct author", function() {
-                    assert.strictEqual(this.resultPackageJson.author, "Kevin \"platinumazure\" Partington");
-                });
+            it("has correct package.json", () => {
+                assert.jsonFileContent("package.json", { author: "Kevin \"platinumazure\" Partington" });
             });
         });
 
         describe("Single quotes in description", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "Kevin platinumazure Partington",
-                    pluginId: "test-plugin",
-                    desc: "My 'foo'",
-                    hasRules: false,
-                    hasProcessors: false
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(PLUGIN_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "John Doe",
+                        pluginId: "foo-bar",
+                        desc: "My 'foo'",
+                        hasRules: false,
+                        hasProcessors: false
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting package.json", () => {
-                beforeEach(function() {
-                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
-                });
-
-                it("should be requireable", function() {
-                    assert.ok(this.resultPackageJson);
-                });
-
-                it("should have correct description", function() {
-                    assert.strictEqual(this.resultPackageJson.description, "My 'foo'");
-                });
+            it("has correct package.json", () => {
+                assert.jsonFileContent("package.json", { description: "My 'foo'" });
             });
         });
 
         describe("Single quotes in username", () => {
-            beforeEach(function(done) {
-                helpers.mockPrompt(this.rule, {
-                    userName: "Kevin 'platinumazure' Partington",
-                    pluginId: "test-plugin",
-                    desc: "My foo",
-                    hasRules: false,
-                    hasProcessors: false
-                });
-                this.rule.options["skip-install"] = true;
-                this.rule.run(done);
+            beforeEach(async () => {
+                await helpers.run(PLUGIN_GENERATOR_PATH)
+                    .withPrompts({
+                        userName: "Kevin 'platinumazure' Partington",
+                        pluginId: "foo-bar",
+                        desc: "my description",
+                        hasRules: false,
+                        hasProcessors: false
+                    })
+                    .withOptions({ "skip-install": true });
             });
 
-            describe("Resulting package.json", () => {
-                beforeEach(function() {
-                    this.resultPackageJson = importFresh(path.join(testDirectory, "package.json"));
-                });
-
-                it("should be requireable", function() {
-                    assert.ok(this.resultPackageJson);
-                });
-
-                it("should have correct author", function() {
-                    assert.strictEqual(this.resultPackageJson.author, "Kevin 'platinumazure' Partington");
-                });
+            it("has correct package.json", () => {
+                assert.jsonFileContent("package.json", { author: "Kevin 'platinumazure' Partington" });
             });
         });
     });
