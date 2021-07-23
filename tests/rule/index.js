@@ -24,7 +24,6 @@ describe("ESLint Rule Generator", () => {
         beforeEach(async () => {
             await helpers.run(RULE_GENERATOR_PATH)
                 .withPrompts({
-                    userName: "John Doe",
                     ruleId: "no-unused-vars",
                     desc: "Don't include unused variables.",
                     invalidCode: "x;",
@@ -45,8 +44,6 @@ describe("ESLint Rule Generator", () => {
 
         it("has correct rule implementation file contents", () => {
             assert.fileContent("lib/rules/no-unused-vars.js", "description: \"Don't include unused variables.\"");
-            assert.fileContent("lib/rules/no-unused-vars.js", "@fileoverview Don't include unused variables.");
-            assert.fileContent("lib/rules/no-unused-vars.js", "@author John Doe");
         });
 
         it("has correct rule doc file contents", () => {
@@ -64,7 +61,6 @@ describe("ESLint Rule Generator", () => {
         beforeEach(async () => {
             await helpers.run(RULE_GENERATOR_PATH)
                 .withPrompts({
-                    userName: "John Doe",
                     ruleId: "no-unused-vars",
                     desc: "Don't include unused variables.",
                     invalidCode: "var x = \"foo\";",
@@ -83,7 +79,6 @@ describe("ESLint Rule Generator", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
                     .withPrompts({
-                        userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "My \"foo\"",
                         invalidCode: "x;",
@@ -101,7 +96,6 @@ describe("ESLint Rule Generator", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
                     .withPrompts({
-                        userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "Don't include unused variables.",
                         invalidCode: "var x = \"foo\";",
@@ -119,7 +113,6 @@ describe("ESLint Rule Generator", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
                     .withPrompts({
-                        userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "My 'foo'",
                         invalidCode: "x;",
@@ -137,7 +130,6 @@ describe("ESLint Rule Generator", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
                     .withPrompts({
-                        userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "Don't include unused variables.",
                         invalidCode: "var x = 'foo';",

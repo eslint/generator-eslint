@@ -58,7 +58,6 @@ describe("ESLint Main Generator", () => {
             await helpers.run(APP_GENERATOR_PATH)
                 .withPrompts({
                     outputType: "Rule",
-                    userName: "John Doe",
                     ruleId: "no-unused-vars",
                     desc: "Don't include unused variables.",
                     invalidCode: "x;",

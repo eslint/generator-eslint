@@ -64,9 +64,6 @@ describe("ESLint Plugin Generator", () => {
         it("has correct lib/index.js", () => {
             assert.noFileContent("lib/index.js", "module.exports.processors = {");
             assert.noFileContent("lib/index.js", "module.exports.rules = requireIndex(__dirname + \"/rules\");");
-
-            assert.fileContent("lib/index.js", "@fileoverview my description");
-            assert.fileContent("lib/index.js", "@author John Doe");
         });
     });
 

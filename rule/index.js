@@ -26,10 +26,6 @@ module.exports = class extends Generator {
     async prompting() {
         const prompts = [
             {
-                type: "input",
-                name: "userName",
-                message: "What is your name?"
-            }, {
                 type: "list",
                 name: "target",
                 message: "Where will this rule be published?",
