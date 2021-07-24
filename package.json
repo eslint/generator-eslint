@@ -24,7 +24,7 @@
     "test": "mocha \"tests/**/*.js\"",
     "lint": "npm-run-all --continue-on-error --aggregate-output --parallel lint:*",
     "lint:docs": "markdownlint \"**/*.md\"",
-    "lint:js": "eslint .",
+    "lint:js": "eslint --report-unused-disable-directives .",
     "generate-release": "eslint-generate-release",
     "generate-alpharelease": "eslint-generate-prerelease alpha",
     "generate-betarelease": "eslint-generate-prerelease beta",
