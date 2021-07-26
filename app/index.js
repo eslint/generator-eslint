@@ -4,28 +4,27 @@
  * @copyright jQuery Foundation and other contributors, https://jquery.org/
  * MIT License
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const Generator = require("yeoman-generator");
+import Generator from "yeoman-generator";
+import RuleGenerator from "../rule/index.js";
+import PluginGenerator from "../plugin/index.js";
+import { fileURLToPath } from "node:url"; // eslint-disable-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import path from "node:path"; // eslint-disable-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
 
-//------------------------------------------------------------------------------
-// Helpers
-//------------------------------------------------------------------------------
+const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
 
-const NAMESPACES = {
-    Rule: "eslint:rule",
-    Plugin: "eslint:plugin"
-};
+const RULE_GENERATOR_PATH = path.join(__dirname, "..", "rule", "index.js");
+const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "plugin", "index.js");
 
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-module.exports = class extends Generator {
+export default class extends Generator {
     async prompting() {
         const answers = await this.prompt({
             type: "list",
@@ -35,6 +34,12 @@ module.exports = class extends Generator {
             default: "Rule"
         });
 
-        this.composeWith(NAMESPACES[answers.outputType]);
+        if (answers.outputType === "Rule") {
+            this.composeWith({ Generator: RuleGenerator, path: RULE_GENERATOR_PATH });
+        } else if (answers.outputType === "Plugin") {
+            this.composeWith({ Generator: PluginGenerator, path: PLUGIN_GENERATOR_PATH });
+        } else {
+            throw new Error("Unhandled generator type.");
+        }
     }
-};
+}

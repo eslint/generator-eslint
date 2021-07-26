@@ -4,28 +4,24 @@
  * @copyright jQuery Foundation and other contributors, https://jquery.org/
  * MIT License
  */
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const Generator = require("yeoman-generator");
-const { mkdirSync } = require("fs");
-const validators = require("../lib/validators");
+import Generator from "yeoman-generator";
+import { mkdirSync } from "node:fs"; // eslint-disable-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import { isPluginId, isRequired } from "../lib/validators.js";
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-const isPluginId = validators.isPluginId;
-const isRequired = validators.isRequired;
-
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-module.exports = class extends Generator {
+export default class extends Generator {
     async prompting() {
         const prompts = [{
             type: "input",
@@ -73,4 +69,4 @@ module.exports = class extends Generator {
             mkdirSync(this.destinationPath("tests", "lib", "processors"), { recursive: true });
         }
     }
-};
+}
