@@ -9,8 +9,10 @@
 
 import helpers from "yeoman-test";
 import assert from "yeoman-assert";
-import { fileURLToPath } from "node:url"; // eslint-disable-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
-import path from "node:path"; // eslint-disable-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import { fileURLToPath } from "node:url";
+// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import path from "node:path";
 
 //------------------------------------------------------------------------------
 // Tests
