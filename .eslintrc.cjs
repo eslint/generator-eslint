@@ -3,7 +3,7 @@
 module.exports = {
     root: true,
     parserOptions: {
-        ecmaVersion: "2020"
+        ecmaVersion: 2020
     },
     extends: [
         "eslint"
