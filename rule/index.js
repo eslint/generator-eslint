@@ -2,27 +2,24 @@
  * @fileoverview Rule generator
  * @author Nicholas C. Zakas
  */
-"use strict";
+
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const Generator = require("yeoman-generator");
-const validators = require("../lib/validators");
+import Generator from "yeoman-generator";
+import { isRuleId, isRequired } from "../lib/validators.js";
 
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
 
-const isRuleId = validators.isRuleId;
-const isRequired = validators.isRequired;
-
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
-module.exports = class extends Generator {
+export default class extends Generator {
     async prompting() {
         const prompts = [
             {
@@ -62,4 +59,4 @@ module.exports = class extends Generator {
         this.fs.copyTpl(this.templatePath("_rule.js"), this.destinationPath("lib", "rules", `${this.answers.ruleId}.js`), this.answers);
         this.fs.copyTpl(this.templatePath("_test.js"), this.destinationPath("tests", "lib", "rules", `${this.answers.ruleId}.js`), this.answers);
     }
-};
+}

@@ -3,37 +3,35 @@
  * @author Mitchell Amihod
  */
 
-"use strict";
-
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const assert = require("assert");
-const validators = require("../../lib/validators");
+// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import { strictEqual } from "node:assert";
+import { isPluginId, isRuleId } from "../../lib/validators.js";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 describe("validation helpers", () => {
-
     it("some valid plugin names", () => {
-        assert(validators.isPluginId("eslint-plugin-foo") === true);
-        assert(validators.isPluginId("foo-bar") === true);
+        strictEqual(isPluginId("eslint-plugin-foo"), true);
+        strictEqual(isPluginId("foo-bar"), true);
 
     });
 
     it("plugin id can contain numbers", () => {
-        assert(validators.isPluginId("eslint-plugin-e4x") === true);
+        strictEqual(isPluginId("eslint-plugin-e4x"), true);
     });
 
     it("some valid rule names", () => {
-        assert(validators.isRuleId("rule-foo-bar") === true);
-        assert(validators.isRuleId("foo-bar") === true);
+        strictEqual(isRuleId("rule-foo-bar"), true);
+        strictEqual(isRuleId("foo-bar"), true);
     });
 
     it("rule id can contain numbers", () => {
-        assert(validators.isRuleId("rule-1234") === true);
+        strictEqual(isRuleId("rule-1234"), true);
     });
 });

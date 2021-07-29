@@ -3,19 +3,23 @@
  * @author Nicholas C. Zakas
  */
 
-"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const path = require("path"),
-    helpers = require("yeoman-test"),
-    assert = require("yeoman-assert");
+import helpers from "yeoman-test";
+import assert from "yeoman-assert";
+// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import { fileURLToPath } from "node:url";
+// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
+import path from "node:path";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
 
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule", "index.js");
 
