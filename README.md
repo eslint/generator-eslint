@@ -44,6 +44,6 @@ You'll be prompted for some information and then it will generate the files nece
 
 ## License and Copyright
 
-Copyright jQuery Foundation and other contributors, <https://jquery.org/>
+Copyright OpenJS Foundation and other contributors, <www.openjsf.org>
 
 [MIT License](https://en.wikipedia.org/wiki/MIT_License)
