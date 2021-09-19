@@ -3,6 +3,9 @@
   "version": "3.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
     "yeoman-generator"
   ],
   "homepage": "https://github.com/eslint/generator-eslint",
