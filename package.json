@@ -4,8 +4,6 @@
   "description": "A generator for Yeoman",
   "keywords": [
     "eslint",
-    "eslintplugin",
-    "eslint-plugin",
     "yeoman-generator"
   ],
   "homepage": "https://github.com/eslint/generator-eslint",
