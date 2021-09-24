@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "A Yeoman generator for creating ESLint plugins/rules",
   "keywords": [
+    "eslint",
     "yeoman-generator"
   ],
   "homepage": "https://github.com/eslint/generator-eslint",
