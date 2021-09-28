@@ -8,6 +8,9 @@
 // Rule Definition
 //------------------------------------------------------------------------------
 
+/**
+ * @type {import('eslint').Rule.RuleModule}
+ */
 module.exports = {
   meta: {
     type: null, // `problem`, `suggestion`, or `layout`
