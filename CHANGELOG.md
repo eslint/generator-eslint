@@ -1,3 +1,11 @@
+v3.0.1 - October 18, 2021
+
+* [`6f92f33`](https://github.com/eslint/generator-eslint/commit/6f92f334e66a2d4a005e288222dea9c93e1fc460) Chore: Use latest dependencies internally (#117) (Bryan Mishkin)
+* [`7f55ede`](https://github.com/eslint/generator-eslint/commit/7f55ede3f9ef1eca0b91e394a8ad30e76b70f82d) Upgrade: Use latest dependencies in plugin template (#116) (Bryan Mishkin)
+* [`68ba9da`](https://github.com/eslint/generator-eslint/commit/68ba9dac798264e0a4c780dd3e8681371173bbef) Chore: add type jsdoc to rule.js (#113) (eightHundreds)
+* [`abda0c8`](https://github.com/eslint/generator-eslint/commit/abda0c879288d108eab8eda8c68910fcc43e7b2c) Docs: Add `eslint` keyword in package.json (#115) (Bryan Mishkin)
+* [`7e6a5c1`](https://github.com/eslint/generator-eslint/commit/7e6a5c1a2539d52f475758d43e4776490bf60274) Docs: Add better package.json description (#114) (Bryan Mishkin)
+
 v3.0.0 - August 4, 2021
 
 * [`652d0b7`](https://github.com/eslint/generator-eslint/commit/652d0b727285bf8b38a8a79a1e893fbcd0210aa7) Docs: Update copyright (Nicholas C. Zakas)
