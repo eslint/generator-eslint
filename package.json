@@ -7,10 +7,10 @@
     "yeoman-generator"
   ],
   "homepage": "https://github.com/eslint/generator-eslint",
+  "funding": "https://opencollective.com/eslint",
   "bugs": "https://github.com/eslint/generator-eslint/issues",
   "author": {
     "name": "ESLint",
-    "email": "",
     "url": "https://github.com/eslint"
   },
   "type": "module",
