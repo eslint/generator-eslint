@@ -12,9 +12,7 @@
 import Generator from "yeoman-generator";
 import RuleGenerator from "../rule/index.js";
 import PluginGenerator from "../plugin/index.js";
-// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
 import { fileURLToPath } from "node:url";
-// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
 import path from "node:path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle

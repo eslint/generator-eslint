@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 import Generator from "yeoman-generator";
-// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
 import { mkdirSync } from "node:fs";
 import { isPluginId, isRequired } from "../lib/validators.js";
 

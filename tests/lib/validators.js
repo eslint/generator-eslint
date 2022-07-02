@@ -7,7 +7,6 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-// eslint-disable-next-line node/no-missing-import -- https://github.com/mysticatea/eslint-plugin-node/issues/275
 import { strictEqual } from "node:assert";
 import { isPluginId, isRuleId } from "../../lib/validators.js";
 
