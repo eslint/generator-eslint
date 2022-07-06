@@ -14,7 +14,6 @@ module.exports = {
     type: null, // `problem`, `suggestion`, or `layout`
     docs: {
       description: "<%- desc.replace(/"/g, '\\"') %>",
-      category: "Fill me in",
       recommended: false,
       url: null, // URL to the documentation page for this rule
     },
