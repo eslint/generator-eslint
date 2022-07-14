@@ -26,7 +26,7 @@
     "node": "12.x || 14.x || >= 16"
   },
   "peerDependencies": {
-    "eslint": ">=6"
+    "eslint": ">=7"
   },
   "license": "ISC"
 }
