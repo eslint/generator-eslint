@@ -1,3 +1,20 @@
+v4.0.0 - July 16, 2022
+
+* [`0c6b337`](https://github.com/eslint/generator-eslint/commit/0c6b33760347cd8035f2b37a0004d620414542f7) chore: update all dependencies (#138) (Bryan Mishkin)
+* [`c7de75d`](https://github.com/eslint/generator-eslint/commit/c7de75dabe32aa5baf86f9f21e7e409204641dca) feat: upgrade plugin template dependencies (#133) (Bryan Mishkin)
+* [`9675983`](https://github.com/eslint/generator-eslint/commit/96759838f70e37a217a4a4116e99e03b469d4a23) feat!: drop Node 12/17 support (#135) (Bryan Mishkin)
+* [`b6a3591`](https://github.com/eslint/generator-eslint/commit/b6a3591148f076dde927393a45c53943f89f2d57) feat: strictly define Node API in plugin template (#134) (Bryan Mishkin)
+* [`0a0f60c`](https://github.com/eslint/generator-eslint/commit/0a0f60cf4da05e0f8b0ad92a9ad3b79828634439) feat: drop ESLint v6 support in plugin template (#136) (Bryan Mishkin)
+* [`e926489`](https://github.com/eslint/generator-eslint/commit/e926489b9bd4513dc54f73e336e720167c182a13) chore: Bump tar from 6.1.0 to 6.1.11 (#125) (dependabot[bot])
+* [`6650240`](https://github.com/eslint/generator-eslint/commit/6650240ce8e85b515224cba6c2624dfe3a4634d1) chore: Bump minimist from 1.2.5 to 1.2.6 (#126) (dependabot[bot])
+* [`87ac39d`](https://github.com/eslint/generator-eslint/commit/87ac39d28d841f6d59a07a88b59f042e8154dc24) chore: add funding field in pkg json (#128) (Amaresh  S M)
+* [`edda907`](https://github.com/eslint/generator-eslint/commit/edda907053284f3d8c4c9a08fc2537af70858741) fix: remove unused meta.docs.category field in rule template (#132) (Brandon Scott)
+* [`dff57cc`](https://github.com/eslint/generator-eslint/commit/dff57cc1adf47d57d911df079a1665478ca54aee) ci: add node v18 to test workflow (#130) (Amaresh  S M)
+* [`e804496`](https://github.com/eslint/generator-eslint/commit/e804496e169e8830be828ba7f2df52e9d0268961) ci: update github actions (#127) (Amaresh  S M)
+* [`58fedf1`](https://github.com/eslint/generator-eslint/commit/58fedf1aea818df481413c4f36f8a6126113ebf3) chore: recreate package-lock.json (#129) (Bryan Mishkin)
+* [`a74ee56`](https://github.com/eslint/generator-eslint/commit/a74ee56d3a2a3ea999538b2db87975447ac35625) chore: Bump follow-redirects from 1.14.1 to 1.14.8 (#121) (dependabot[bot])
+* [`47cdfc9`](https://github.com/eslint/generator-eslint/commit/47cdfc969603abccd2c92f030f92de25dedc81a6) docs: Switch to single-line comment for rule jsdoc type (#119) (Bryan Mishkin)
+
 v3.0.1 - October 18, 2021
 
 * [`6f92f33`](https://github.com/eslint/generator-eslint/commit/6f92f334e66a2d4a005e288222dea9c93e1fc460) Chore: Use latest dependencies internally (#117) (Bryan Mishkin)
