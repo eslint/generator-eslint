@@ -52,7 +52,7 @@ describe("ESLint Rule Generator", () => {
         });
 
         it("has correct rule doc file contents", () => {
-            assert.fileContent("docs/rules/no-unused-vars.md", "# Don&#39;t include unused variables. (no-unused-vars)");
+            assert.fileContent("docs/rules/no-unused-vars.md", "# Don&#39;t include unused variables. (`no-unused-vars`)");
         });
 
         it("has correct rule test file contents", () => {
