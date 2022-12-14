@@ -1,3 +1,7 @@
+v4.1.0 - December 14, 2022
+
+* [`6878784`](https://github.com/eslint/generator-eslint/commit/68787841f22bacd6cb243fed7ca8fafb5fe4843b) feat: add eslint-doc-generator to plugin template (#140) (Bryan Mishkin)
+
 v4.0.0 - July 16, 2022
 
 * [`0c6b337`](https://github.com/eslint/generator-eslint/commit/0c6b33760347cd8035f2b37a0004d620414542f7) chore: update all dependencies (#138) (Bryan Mishkin)
