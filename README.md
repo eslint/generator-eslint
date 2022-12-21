@@ -6,6 +6,10 @@ The ESLint generator for [Yeoman](https://yeoman.io/). This generator is intende
 
 First and foremost, you must have [Node.js](https://nodejs.org/) and npm installed. If you don't have Node.js installed, please download and install the latest version.
 
+> **Requirements**
+>
+> - Node.js ^14.17.0 || ^16.0.0 || >= 18.0.0
+
 You must also install Yeoman, if you don't have it installed already. To install Yeoman, you can run this command:
 
 ```sh
