@@ -1,3 +1,8 @@
+v4.1.1 - December 30, 2022
+
+* [`9349ded`](https://github.com/eslint/generator-eslint/commit/9349ded64b8f8d8f724a27a826336192411c3139) chore: Bump decode-uri-component from 0.2.0 to 0.2.2 (#141) (dependabot[bot])
+* [`a810ce5`](https://github.com/eslint/generator-eslint/commit/a810ce52765b5ffe77bdee21a4a6628d5b8a9381) docs: add node version requirement to readme (#142) (Gain John)
+
 v4.1.0 - December 14, 2022
 
 * [`6878784`](https://github.com/eslint/generator-eslint/commit/68787841f22bacd6cb243fed7ca8fafb5fe4843b) feat: add eslint-doc-generator to plugin template (#140) (Bryan Mishkin)
