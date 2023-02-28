@@ -1,6 +1,6 @@
 {
   "name": "generator-eslint",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "A Yeoman generator for creating ESLint plugins/rules",
   "keywords": [
     "eslint",
