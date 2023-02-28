@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.3](https://github.com/eslint/generator-eslint/compare/v4.1.2...v4.1.3) (2023-02-28)
+
+
+### Miscellaneous Chores
+
+* test releasing with release-please ([#149](https://github.com/eslint/generator-eslint/issues/149)) ([239193a](https://github.com/eslint/generator-eslint/commit/239193a2aff6ca7bac345ce50abdade89e6e6878))
+
 ## [4.1.2](https://github.com/eslint/generator-eslint/compare/v4.1.1...v4.1.2) (2023-02-28)
 
 
