@@ -1,3 +1,12 @@
+# Changelog
+
+## [4.1.2](https://github.com/eslint/generator-eslint/compare/v4.1.1...v4.1.2) (2023-02-28)
+
+
+### Miscellaneous Chores
+
+* Run a test release using release-please ([#145](https://github.com/eslint/generator-eslint/issues/145)) ([6d3e535](https://github.com/eslint/generator-eslint/commit/6d3e5353c341aeb4f0b9fae6c7701d4a4a556848))
+
 v4.1.1 - December 30, 2022
 
 * [`9349ded`](https://github.com/eslint/generator-eslint/commit/9349ded64b8f8d8f724a27a826336192411c3139) chore: Bump decode-uri-component from 0.2.0 to 0.2.2 (#141) (dependabot[bot])
@@ -119,4 +128,3 @@ v1.0.3 - March 10, 2016
 
 * ffa83c6 Build: Add eslint-release (Nicholas C. Zakas)
 * 855fd77 Fix: Complete path for correct plugin install (fixes #19) (Afnan Fahim)
-
