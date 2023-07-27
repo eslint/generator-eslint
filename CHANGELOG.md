@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.4](https://github.com/eslint/generator-eslint/compare/v4.1.3...v4.1.4) (2023-07-27)
+
+
+### Chores
+
+* Add PRs to triage ([#160](https://github.com/eslint/generator-eslint/issues/160)) ([74cfbea](https://github.com/eslint/generator-eslint/commit/74cfbead32304037db18ab142c0b5793e507e74f))
+* Also post releases to Mastodon ([#152](https://github.com/eslint/generator-eslint/issues/152)) ([d0f42ab](https://github.com/eslint/generator-eslint/commit/d0f42abd433148719243e3b156c049e6f2cdaac4))
+* Bump semver from 5.7.1 to 5.7.2 ([#157](https://github.com/eslint/generator-eslint/issues/157)) ([ad2d301](https://github.com/eslint/generator-eslint/commit/ad2d3016f13d63c7df8c0d5360fda493db676116))
+* Bump tough-cookie and yo ([#156](https://github.com/eslint/generator-eslint/issues/156)) ([a6a2d0f](https://github.com/eslint/generator-eslint/commit/a6a2d0f4dc242bd023998598c1a306b62de21afd))
+* generate provenance statements when release ([#159](https://github.com/eslint/generator-eslint/issues/159)) ([901bd7a](https://github.com/eslint/generator-eslint/commit/901bd7afa060fbd3cb02d24a21b8ccf40c2bdf03))
+* include all commits in the changelog ([#154](https://github.com/eslint/generator-eslint/issues/154)) ([57fa705](https://github.com/eslint/generator-eslint/commit/57fa705cf6f61f1fc052a3f0b4169d36c8f9708f))
+* run tests on Node.js v20 ([#153](https://github.com/eslint/generator-eslint/issues/153)) ([499dc15](https://github.com/eslint/generator-eslint/commit/499dc1559d1b924feebe8b0487da5aab4465855e))
+
 ## [4.1.3](https://github.com/eslint/generator-eslint/compare/v4.1.2...v4.1.3) (2023-02-28)
 
 
