@@ -23,15 +23,15 @@
   ],
   "repository": "eslint/generator-eslint",
   "scripts": {
-    "test": "mocha --recursive tests",
     "lint": "npm-run-all --continue-on-error --aggregate-output --parallel lint:*",
     "lint:docs": "markdownlint \"**/*.md\"",
     "lint:js": "eslint --report-unused-disable-directives .",
-    "generate-release": "eslint-generate-release",
-    "generate-alpharelease": "eslint-generate-prerelease alpha",
-    "generate-betarelease": "eslint-generate-prerelease beta",
-    "generate-rcrelease": "eslint-generate-prerelease rc",
-    "publish-release": "eslint-publish-release"
+    "release:generate:latest": "eslint-generate-release",
+    "release:generate:alpha": "eslint-generate-prerelease alpha",
+    "release:generate:beta": "eslint-generate-prerelease beta",
+    "release:generate:rc": "eslint-generate-prerelease rc",
+    "release:publish": "eslint-publish-release",
+    "test": "mocha --recursive tests"
   },
   "dependencies": {
     "yeoman-generator": "^5.6.1"
