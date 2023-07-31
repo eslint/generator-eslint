@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.5](https://github.com/eslint/generator-eslint/compare/v4.1.4...v4.1.5) (2023-07-31)
+
+
+### Chores
+
+* standardize npm script names ([#161](https://github.com/eslint/generator-eslint/issues/161)) ([b25c818](https://github.com/eslint/generator-eslint/commit/b25c8189b32f88f4b18fcd41c28dc0661c2337cd))
+
 ## [4.1.4](https://github.com/eslint/generator-eslint/compare/v4.1.3...v4.1.4) (2023-07-27)
 
 
