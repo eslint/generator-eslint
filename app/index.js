@@ -15,7 +15,7 @@ import PluginGenerator from "../plugin/index.js";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "rule", "index.js");
 const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "plugin", "index.js");

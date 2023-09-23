@@ -17,7 +17,7 @@ import path from "node:path";
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule", "index.js");
 
@@ -25,7 +25,7 @@ describe("ESLint Rule Generator", () => {
     describe("general case", () => {
         beforeEach(async () => {
             await helpers.run(RULE_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     userName: "John Doe",
                     ruleId: "no-unused-vars",
                     desc: "Don't include unused variables.",
@@ -65,7 +65,7 @@ describe("ESLint Rule Generator", () => {
     describe("when generating an ESLint core rule", () => {
         beforeEach(async () => {
             await helpers.run(RULE_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     userName: "John Doe",
                     ruleId: "no-unused-vars",
                     desc: "Don't include unused variables.",
@@ -84,7 +84,7 @@ describe("ESLint Rule Generator", () => {
         describe("Double quotes in description", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "My \"foo\"",
@@ -102,7 +102,7 @@ describe("ESLint Rule Generator", () => {
         describe("Double quotes in code snippet", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "Don't include unused variables.",
@@ -120,7 +120,7 @@ describe("ESLint Rule Generator", () => {
         describe("Single quotes in description", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "My 'foo'",
@@ -138,7 +138,7 @@ describe("ESLint Rule Generator", () => {
         describe("Single quotes in code snippet", () => {
             beforeEach(async () => {
                 await helpers.run(RULE_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         ruleId: "no-unused-vars",
                         desc: "Don't include unused variables.",

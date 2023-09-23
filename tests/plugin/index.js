@@ -16,7 +16,7 @@ import path from "node:path";
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "..", "plugin", "index.js");
 
@@ -24,7 +24,7 @@ describe("ESLint Plugin Generator", () => {
     describe("general case", () => {
         beforeEach(async () => {
             await helpers.run(PLUGIN_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     userName: "John Doe",
                     pluginId: "foo-bar",
                     desc: "my description",
@@ -74,7 +74,7 @@ describe("ESLint Plugin Generator", () => {
     describe("when rules are expected", () => {
         beforeEach(async () => {
             await helpers.run(PLUGIN_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     userName: "John Doe",
                     pluginId: "foo-bar",
                     desc: "my description",
@@ -109,7 +109,7 @@ describe("ESLint Plugin Generator", () => {
     describe("when processors are expected", () => {
         beforeEach(async () => {
             await helpers.run(PLUGIN_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     userName: "John Doe",
                     pluginId: "foo-bar",
                     desc: "my description",
@@ -145,7 +145,7 @@ describe("ESLint Plugin Generator", () => {
         describe("With eslint-plugin prefix provided in plugin ID", () => {
             beforeEach(async () => {
                 await helpers.run(PLUGIN_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         pluginId: "eslint-plugin-foo-bar",
                         desc: "my description",
@@ -163,7 +163,7 @@ describe("ESLint Plugin Generator", () => {
         describe("Double quotes in description", () => {
             beforeEach(async () => {
                 await helpers.run(PLUGIN_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         pluginId: "foo-bar",
                         desc: "My \"foo\"",
@@ -181,7 +181,7 @@ describe("ESLint Plugin Generator", () => {
         describe("Double quotes in username", () => {
             beforeEach(async () => {
                 await helpers.run(PLUGIN_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "Kevin \"platinumazure\" Partington",
                         pluginId: "foo-bar",
                         desc: "my description",
@@ -199,7 +199,7 @@ describe("ESLint Plugin Generator", () => {
         describe("Single quotes in description", () => {
             beforeEach(async () => {
                 await helpers.run(PLUGIN_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "John Doe",
                         pluginId: "foo-bar",
                         desc: "My 'foo'",
@@ -217,7 +217,7 @@ describe("ESLint Plugin Generator", () => {
         describe("Single quotes in username", () => {
             beforeEach(async () => {
                 await helpers.run(PLUGIN_GENERATOR_PATH)
-                    .withPrompts({
+                    .withAnswers({
                         userName: "Kevin 'platinumazure' Partington",
                         pluginId: "foo-bar",
                         desc: "my description",

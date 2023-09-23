@@ -16,7 +16,7 @@ import path from "node:path";
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const APP_GENERATOR_PATH = path.join(__dirname, "..", "..", "app", "index.js");
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule", "index.js");
@@ -26,7 +26,7 @@ describe("ESLint Main Generator", () => {
     describe("User answers with Plugin", () => {
         beforeEach(async () => {
             await helpers.run(APP_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     outputType: "Plugin",
                     userName: "John Doe",
                     pluginId: "foo-bar",
@@ -57,7 +57,7 @@ describe("ESLint Main Generator", () => {
     describe("User answers with Rule", () => {
         beforeEach(async () => {
             await helpers.run(APP_GENERATOR_PATH)
-                .withPrompts({
+                .withAnswers({
                     outputType: "Rule",
                     userName: "John Doe",
                     ruleId: "no-unused-vars",
