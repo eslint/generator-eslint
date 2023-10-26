@@ -25,33 +25,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        versions:
-          - node: 20.x
-            npm: '10'
-          - node: 19.x
-            npm: '9'
-          - node: 18.x
-            npm: '10'
-          - node: 16.x
-            npm: '9'
-          - node: 14.x
-            npm: '9'
+        node: [20.x, 19.x, 18.x, 16.x, 14.x]
         include:
         - os: windows-latest
-          versions:
-            - node: 18.x
-              npm: '10'
+          node: "18.x"
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.versions.node }}
-    - name: Install latest supported NPM
-      shell: bash
-      run: |
-        npm install -g npm@${{ matrix.versions.npm }}
-        echo -n "Installed npm version is `npm -v`"
+        node-version: ${{ matrix.node }}
     - name: Install dependencies
       run: npm ci
     - name: Run tests
