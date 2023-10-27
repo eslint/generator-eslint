@@ -39,6 +39,16 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+<% } %>
+
+## Configurations
+
+<!-- begin auto-generated configs list -->
+TODO: Run eslint-doc-generator to generate the configs list (or delete this section if no configs are offered).
+<!-- end auto-generated configs list -->
+
+<% if (hasRules) { %>
+
 ## Rules
 
 <!-- begin auto-generated rules list -->
