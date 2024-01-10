@@ -1,5 +1,25 @@
 # Changelog
 
+## [5.0.0](https://github.com/eslint/generator-eslint/compare/v4.1.5...v5.0.0) (2024-01-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Require Node.js ^18.18.0 || ^20.9.0 || >=21.1.0 ([#169](https://github.com/eslint/generator-eslint/issues/169))
+
+### Features
+
+* add auto-generated configs list to readme in template ([#164](https://github.com/eslint/generator-eslint/issues/164)) ([93a5ffb](https://github.com/eslint/generator-eslint/commit/93a5ffb940d1be433cf0fd467e5c57d1d32b672f))
+* Require Node.js ^18.18.0 || ^20.9.0 || &gt;=21.1.0 ([#169](https://github.com/eslint/generator-eslint/issues/169)) ([6d3a572](https://github.com/eslint/generator-eslint/commit/6d3a572babe3690c62264290316daa09c679157a))
+
+
+### Chores
+
+* Bump follow-redirects from 1.15.1 to 1.15.4 ([#171](https://github.com/eslint/generator-eslint/issues/171)) ([07cbcfb](https://github.com/eslint/generator-eslint/commit/07cbcfb59543d0ab4a7d89ea26ae2c272eb3e543))
+* don't install latest npm ([#168](https://github.com/eslint/generator-eslint/issues/168)) ([837bde0](https://github.com/eslint/generator-eslint/commit/837bde01473c97730bc40e8c93ca02c57aaf3bd2))
+* run tests in Node.js 21 ([#167](https://github.com/eslint/generator-eslint/issues/167)) ([25a4666](https://github.com/eslint/generator-eslint/commit/25a4666e9eaad3d937b9c6f5c8701d50e6c38968))
+* Update add-to-triage.yml ([#165](https://github.com/eslint/generator-eslint/issues/165)) ([5b0ea24](https://github.com/eslint/generator-eslint/commit/5b0ea24b6021c048b36f52f3e2a25eeb92c78b89))
+
 ## [4.1.5](https://github.com/eslint/generator-eslint/compare/v4.1.4...v4.1.5) (2023-07-31)
 
 
