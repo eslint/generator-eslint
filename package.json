@@ -39,7 +39,7 @@
   "devDependencies": {
     "eslint": "^8.19.0",
     "eslint-config-eslint": "^7.0.0",
-    "eslint-release": "^3.2.0",
+    "eslint-release": "^3.2.2",
     "markdownlint-cli": "^0.31.1",
     "mocha": "^10.0.0",
     "npm-run-all": "^4.1.5",
