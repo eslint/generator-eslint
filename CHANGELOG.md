@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/eslint/generator-eslint/compare/v5.0.0...v5.0.1) (2024-02-28)
+
+
+### Chores
+
+* update dependency eslint-release to ^3.2.2 ([#174](https://github.com/eslint/generator-eslint/issues/174)) ([92a44af](https://github.com/eslint/generator-eslint/commit/92a44afb6bb04bd7b247111aa9d0f2c2b07558b2))
+
 ## [5.0.0](https://github.com/eslint/generator-eslint/compare/v4.1.5...v5.0.0) (2024-01-10)
 
 
