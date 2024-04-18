@@ -54,7 +54,7 @@ export default class extends Generator {
     }
 
     writing() {
-        this.fs.copyTpl(this.templatePath("_.eslintrc.js"), this.destinationPath(".eslintrc.js"), this.answers);
+        this.fs.copyTpl(this.templatePath("_eslint.config.mjs"), this.destinationPath("eslint.config.mjs"), this.answers);
         this.fs.copyTpl(this.templatePath("_plugin.js"), this.destinationPath("lib/index.js"), this.answers);
         this.fs.copyTpl(this.templatePath("_package.json"), this.destinationPath("package.json"), this.answers);
         this.fs.copyTpl(this.templatePath("_README.md"), this.destinationPath("README.md"), this.answers);

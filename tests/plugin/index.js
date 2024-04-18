@@ -39,7 +39,7 @@ describe("ESLint Plugin Generator", () => {
                 "lib/index.js",
                 "package.json",
                 "README.md",
-                ".eslintrc.js"
+                "eslint.config.mjs"
             ];
 
             assert.file(expected);
