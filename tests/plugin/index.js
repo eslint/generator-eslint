@@ -16,7 +16,7 @@ import path from "node:path";
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle -- cjs convention
 
 const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "..", "plugin", "index.js");
 

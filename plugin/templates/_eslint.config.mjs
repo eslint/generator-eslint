@@ -6,4 +6,4 @@ export default [
     pluginJs.configs.recommended,
     pluginNode.configs["flat/recommended"],
     eslintPlugin.configs["flat/recommended"]
-]
+];

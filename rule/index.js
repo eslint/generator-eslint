@@ -19,6 +19,9 @@ import { isRuleId, isRequired } from "../lib/validators.js";
 // Constructor
 //------------------------------------------------------------------------------
 
+/**
+ * Represents a generator for creating ESLint rules.
+ */
 export default class extends Generator {
     async prompting() {
         const prompts = [

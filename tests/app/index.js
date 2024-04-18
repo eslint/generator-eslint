@@ -15,12 +15,13 @@ import path from "node:path";
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+/* eslint-disable no-underscore-dangle -- cjs convention */
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const APP_GENERATOR_PATH = path.join(__dirname, "..", "..", "app", "index.js");
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "..", "rule", "index.js");
 const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "..", "plugin", "index.js");
+/* eslint-enable no-underscore-dangle -- cjs convention */
 
 describe("ESLint Main Generator", () => {
     describe("User answers with Plugin", () => {

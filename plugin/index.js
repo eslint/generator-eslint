@@ -21,6 +21,9 @@ import { isPluginId, isRequired } from "../lib/validators.js";
 // Constructor
 //------------------------------------------------------------------------------
 
+/**
+ *
+ */
 export default class extends Generator {
     async prompting() {
         const prompts = [{

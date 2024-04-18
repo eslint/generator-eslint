@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "npm-run-all --continue-on-error --aggregate-output --parallel lint:*",
     "lint:docs": "markdownlint \"**/*.md\"",
-    "lint:js": "eslint --report-unused-disable-directives .",
+    "lint:js": "eslint .",
     "release:generate:latest": "eslint-generate-release",
     "release:generate:alpha": "eslint-generate-prerelease alpha",
     "release:generate:beta": "eslint-generate-prerelease beta",
