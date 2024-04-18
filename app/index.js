@@ -27,7 +27,7 @@ const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "plugin", "index.js");
 //------------------------------------------------------------------------------
 
 /**
- *
+ * Represents a generator for creating ESLint plugins/rules.
  */
 export default class extends Generator {
     async prompting() {

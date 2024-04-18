@@ -22,7 +22,7 @@ import { isPluginId, isRequired } from "../lib/validators.js";
 //------------------------------------------------------------------------------
 
 /**
- *
+ * Represents a generator for creating ESLint plugins.
  */
 export default class extends Generator {
     async prompting() {
