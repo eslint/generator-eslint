@@ -8,7 +8,7 @@ First and foremost, you must have [Node.js](https://nodejs.org/) and npm install
 
 > **Requirements**
 >
-> - Node.js ^14.17.0 || ^16.0.0 || >= 18.0.0
+> - Node.js ^18.18.0 || ^20.9.0 || >=21.1.0
 
 You must also install Yeoman, if you don't have it installed already. To install Yeoman, you can run this command:
 
