@@ -19,6 +19,7 @@ module.exports = {
     },
     fixable: null, // Or `code` or `whitespace`
     schema: [], // Add a schema if the rule has options
+    messages: {}, // Add messageId and message
   },
 
   create(context) {
