@@ -5,8 +5,14 @@
 
 import assert from "node:assert";
 
-// eslint-disable-next-line func-style, node/no-unsupported-features/es-syntax -- https://github.com/mysticatea/eslint-plugin-node/issues/250
-const importFresh = async modulePath => import(`${modulePath}?x=${new Date()}`);
+/**
+ * Import a module fresh every time.
+ * @param {string} modulePath The path to the module to import.
+ * @returns {Promise<*>} The imported module.
+ */
+async function importFresh(modulePath) {
+    return import(`${modulePath}?x=${new Date()}`);
+}
 
 describe("eslint generator", () => {
     it("can be imported without blowing up", () => {

@@ -15,15 +15,20 @@ import PluginGenerator from "../plugin/index.js";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle
+/* eslint-disable no-underscore-dangle -- cjs convention */
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const RULE_GENERATOR_PATH = path.join(__dirname, "..", "rule", "index.js");
 const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "plugin", "index.js");
+/* eslint-enable no-underscore-dangle -- cjs convention*/
 
 //------------------------------------------------------------------------------
 // Constructor
 //------------------------------------------------------------------------------
 
+/**
+ * Represents a generator for creating ESLint plugins/rules.
+ */
 export default class extends Generator {
     async prompting() {
         const answers = await this.prompt({
