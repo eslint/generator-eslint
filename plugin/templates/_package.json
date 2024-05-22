@@ -10,6 +10,9 @@
   "author": "<%- userName.replace(/"/g, '\\"') %>",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "lint": "npm-run-all \"lint:*\"",
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
