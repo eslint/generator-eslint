@@ -27,7 +27,7 @@ ruleTester.run("<%= ruleId %>", rule, {
   invalid: [
     {
       code: "<%- invalidCode.replace(/"/g, '\\"') %>",
-      errors: [{ message: "Fill me in.", type: "Me too" }],
+      errors: [{ messageId: "Fill me in.", type: "Me too" }],
     },
   ],
 });
