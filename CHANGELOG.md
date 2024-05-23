@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.1.0](https://github.com/eslint/generator-eslint/compare/v5.0.0...v5.1.0) (2024-05-23)
+
+
+### Features
+
+* add `"files"` to generated `package.json` ([#190](https://github.com/eslint/generator-eslint/issues/190)) ([cf7d755](https://github.com/eslint/generator-eslint/commit/cf7d7550cdf2ad968c4bcefecb2987125603672a))
+* add messages to rule template ([#182](https://github.com/eslint/generator-eslint/issues/182)) ([f1c1240](https://github.com/eslint/generator-eslint/commit/f1c12406d7f5ccb387c2210d0729413624f3784c))
+* update templates for eslint v9 ([#179](https://github.com/eslint/generator-eslint/issues/179)) ([c383e9c](https://github.com/eslint/generator-eslint/commit/c383e9c1e8d132198c333a8cdf79ef8904f6fceb))
+* use `messageId` in tests ([#189](https://github.com/eslint/generator-eslint/issues/189)) ([c53fbc6](https://github.com/eslint/generator-eslint/commit/c53fbc65307126a00e6955bf403d3d37d1e2c138))
+
 ## [5.0.0](https://github.com/eslint/generator-eslint/compare/v4.1.5...v5.0.0) (2024-01-10)
 
 
