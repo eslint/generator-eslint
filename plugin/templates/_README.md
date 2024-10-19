@@ -18,23 +18,23 @@ npm install eslint-plugin-<%= pluginId %> --save-dev
 
 ## Usage
 
-Add `<%= pluginId %>` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `<%= pluginId %>` to the `plugins` key of your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file). You can omit the `eslint-plugin-` prefix:
 
-```json
+```js
 {
-    "plugins": [
+    plugins: {
         "<%= pluginId %>"
-    ]
+    }
 }
 ```
 
 <% if (hasRules) { %>
-Then configure the rules you want to use under the rules section.
+Then configure the rules you want to use under the `rules` key.
 
-```json
+```js
 {
-    "rules": {
-        "<%= pluginId %>/rule-name": 2
+    rules: {
+        "<%= pluginId %>/rule-name": "warn"
     }
 }
 ```
