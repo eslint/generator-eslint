@@ -18,7 +18,7 @@ npm install eslint-plugin-<%= pluginId %> --save-dev
 
 ## Usage
 
-Add `<%= pluginId %>` to the `plugins` key of your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file). You can omit the `eslint-plugin-` prefix:
+Add `<%= pluginId %>` to the `plugins` key of your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file):
 
 ```js
 {
