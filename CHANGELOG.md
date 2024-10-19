@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/eslint/generator-eslint/compare/v5.1.0...v5.1.1) (2024-10-19)
+
+
+### Bug Fixes
+
+* convert README template usage to flat ([#194](https://github.com/eslint/generator-eslint/issues/194)) ([779340a](https://github.com/eslint/generator-eslint/commit/779340a5f10db368cfefe67dda7dda1043c50dac))
+
 ## [5.1.0](https://github.com/eslint/generator-eslint/compare/v5.0.0...v5.1.0) (2024-05-23)
 
 
