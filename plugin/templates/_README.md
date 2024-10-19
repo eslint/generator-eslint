@@ -18,25 +18,36 @@ npm install eslint-plugin-<%= pluginId %> --save-dev
 
 ## Usage
 
-Add `<%= pluginId %>` to the `plugins` key of your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file):
+In your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file), import the plugin `eslint-plugin-<%= pluginId %>` and add `<%= pluginId %>` to the `plugins` key:
 
 ```js
-{
-    plugins: {
-        "<%= pluginId %>"
+import <%= pluginId %> from "eslint-plugin-<%= pluginId %>";
+
+export default [
+    {
+        plugins: {
+            <%= pluginId %>
+        }
     }
-}
+];
 ```
 
 <% if (hasRules) { %>
 Then configure the rules you want to use under the `rules` key.
 
 ```js
-{
-    rules: {
-        "<%= pluginId %>/rule-name": "warn"
+import <%= pluginId %> from "eslint-plugin-<%= pluginId %>";
+
+export default [
+    {
+        plugins: {
+            <%= pluginId %>
+        },
+        rules: {
+            "<%= pluginId %>/rule-name": "warn"
+        }
     }
-}
+];
 ```
 
 <% } %>

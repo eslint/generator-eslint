@@ -57,7 +57,7 @@ describe("ESLint Plugin Generator", () => {
             assert.fileContent("README.md", "# eslint-plugin-foo-bar");
             assert.fileContent("README.md", "Next, install `eslint-plugin-foo-bar`:");
             assert.fileContent("README.md", "npm install eslint-plugin-foo-bar --save-dev");
-            assert.fileContent("README.md", "Add `foo-bar` to the `plugins` key");
+            assert.fileContent("README.md", "add `foo-bar` to the `plugins` key");
 
             assert.noFileContent("README.md", "Then configure the rules you want to use under the `rules` key.");
         });
