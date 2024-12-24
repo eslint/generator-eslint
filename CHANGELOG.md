@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.2](https://github.com/eslint/generator-eslint/compare/v5.1.1...v5.1.2) (2024-12-24)
+
+
+### Bug Fixes
+
+* update to mocha v11 ([#198](https://github.com/eslint/generator-eslint/issues/198)) ([adbae0e](https://github.com/eslint/generator-eslint/commit/adbae0e19db701a105fe06e8f9ee90e79396d642))
+
 ## [5.1.1](https://github.com/eslint/generator-eslint/compare/v5.1.0...v5.1.1) (2024-10-19)
 
 
