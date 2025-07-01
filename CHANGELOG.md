@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.3](https://github.com/eslint/generator-eslint/compare/v5.1.2...v5.1.3) (2025-07-01)
+
+
+### Bug Fixes
+
+* update the `rule-tester` import in rule test template ([#202](https://github.com/eslint/generator-eslint/issues/202)) ([9bcd275](https://github.com/eslint/generator-eslint/commit/9bcd275bbe75534377e0830f3592f9794342ff56))
+
 ## [5.1.2](https://github.com/eslint/generator-eslint/compare/v5.1.1...v5.1.2) (2024-12-24)
 
 
