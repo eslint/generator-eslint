@@ -76,7 +76,7 @@ describe("ESLint Rule Generator", () => {
         });
 
         it("has correct rule test file contents", () => {
-            assert.fileContent("tests/lib/rules/no-unused-vars.js", "RuleTester = require(\"../../../lib/testers/rule-tester\");");
+            assert.fileContent("tests/lib/rules/no-unused-vars.js", "RuleTester = require(\"../../../lib/rule-tester\");");
         });
     });
 
