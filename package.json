@@ -37,7 +37,7 @@
     "yeoman-generator": "^7.3.3"
   },
   "devDependencies": {
-    "eslint": "^9.13.0",
+    "eslint": "^9.30.1",
     "eslint-config-eslint": "^11.0.0",
     "eslint-release": "^3.2.2",
     "globals": "^15.11.0",
