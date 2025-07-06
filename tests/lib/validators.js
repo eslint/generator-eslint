@@ -18,7 +18,6 @@ describe("validation helpers", () => {
     it("some valid plugin names", () => {
         strictEqual(isPluginId("eslint-plugin-foo"), true);
         strictEqual(isPluginId("foo-bar"), true);
-
     });
 
     it("plugin id can contain numbers", () => {

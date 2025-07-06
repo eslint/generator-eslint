@@ -3,3 +3,4 @@ temp/
 npm-debug.log
 .eslint-release-info.json
 /.vscode/
+*.code-workspace
