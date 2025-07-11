@@ -21,24 +21,26 @@ npm install eslint-plugin-<%= pluginId %> --save-dev
 In your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file), import the plugin `eslint-plugin-<%= pluginId %>` and add `<%= pluginId %>` to the `plugins` key:
 
 ```js
+import { defineConfig } from "eslint/config";
 import <%= pluginId %> from "eslint-plugin-<%= pluginId %>";
 
-export default [
+export default defineConfig([
     {
         plugins: {
             <%= pluginId %>
         }
     }
-];
+]);
 ```
 
 <% if (hasRules) { %>
 Then configure the rules you want to use under the `rules` key.
 
 ```js
+import { defineConfig } from "eslint/config";
 import <%= pluginId %> from "eslint-plugin-<%= pluginId %>";
 
-export default [
+export default defineConfig([
     {
         plugins: {
             <%= pluginId %>
@@ -47,7 +49,7 @@ export default [
             "<%= pluginId %>/rule-name": "warn"
         }
     }
-];
+]);
 ```
 
 <% } %>
