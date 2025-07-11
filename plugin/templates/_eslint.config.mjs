@@ -16,7 +16,7 @@ export default defineConfig([
         plugins: {
             n: pluginNode,
         },
-        extends: [""],
+        extends: ["n/flat/mixed-esm-and-cjs"],
     },
     {
         name: "eslint/eslint-plugin",
