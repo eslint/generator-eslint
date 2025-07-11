@@ -9,20 +9,20 @@ export default defineConfig([
         plugins: {
             js: pluginJs,
         },
-        extends: ["js/recommended"],
+        extends: [""],
     },
     {
         name: "eslint/node",
         plugins: {
             n: pluginNode,
         },
-        extends: ["n/flat/mixed-esm-and-cjs"],
+        extends: [""],
     },
     {
         name: "eslint/eslint-plugin",
         plugins: {
             "eslint-plugin": eslintPlugin,
         },
-        extends: ["eslint-plugin/flat/recommended"],
+        extends: [""],
     }
 ]);
