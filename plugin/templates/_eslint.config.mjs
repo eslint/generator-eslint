@@ -9,7 +9,7 @@ export default defineConfig([
         plugins: {
             js: pluginJs,
         },
-        extends: [""],
+        extends: ["js/recommended"],
     },
     {
         name: "eslint/node",
