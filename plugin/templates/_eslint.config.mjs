@@ -1,9 +1,28 @@
+import { defineConfig } from "eslint/config";
 import pluginJs from "@eslint/js";
 import pluginNode from "eslint-plugin-n";
 import eslintPlugin from "eslint-plugin-eslint-plugin";
 
-export default [
-    pluginJs.configs.recommended,
-    ...pluginNode.configs["flat/mixed-esm-and-cjs"],
-    eslintPlugin.configs["flat/recommended"]
-];
+export default defineConfig([
+    {
+        name: "eslint/js",
+        plugins: {
+            js: pluginJs,
+        },
+        extends: ["js/recommended"],
+    },
+    {
+        name: "eslint/node",
+        plugins: {
+            n: pluginNode,
+        },
+        extends: ["n/mixed-esm-and-cjs"],
+    },
+    {
+        name: "eslint/eslint-plugin",
+        plugins: {
+            "eslint-plugin": eslintPlugin,
+        },
+        extends: ["eslint-plugin/recommended"],
+    }
+]);
