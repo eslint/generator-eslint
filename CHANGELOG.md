@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/eslint/generator-eslint/compare/v5.1.3...v5.2.0) (2025-07-21)
+
+
+### Features
+
+* update plugin template to use `defineConfig` ([#205](https://github.com/eslint/generator-eslint/issues/205)) ([06f321b](https://github.com/eslint/generator-eslint/commit/06f321bff1b417ecd3c98858fa6ecc48fe515845))
+
 ## [5.1.3](https://github.com/eslint/generator-eslint/compare/v5.1.2...v5.1.3) (2025-07-01)
 
 
