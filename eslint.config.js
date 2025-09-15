@@ -9,7 +9,7 @@ export default defineConfig([
     globalIgnores(["temp/", "*/templates/*"]),
     {
         name: "generator-eslint/test-files",
-        files: ["tests/**/*.js"],
+        files: ["tests/**/*.test.js"],
         languageOptions: { globals: globals.mocha }
     }
 ]);
