@@ -74,7 +74,7 @@ describe("ESLint Main Generator", () => {
         });
 
         // Just make sure the Rule generator ran. More thorough tests are in the separate Rule test file.
-        it("creates expected files", async () => {
+        it("creates expected files", () => {
             const expected = [
                 "docs/rules/no-unused-vars.md",
                 "lib/rules/no-unused-vars.js",
