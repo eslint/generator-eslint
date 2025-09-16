@@ -76,9 +76,9 @@ describe("ESLint Main Generator", () => {
         // Just make sure the Rule generator ran. More thorough tests are in the separate Rule test file.
         it("creates expected files", () => {
             const expected = [
-                path.join("docs", "rules", "no-unused-vars.md"),
-                path.join("lib", "rules", "no-unused-vars.js"),
-                path.join("tests", "lib", "rules", "no-unused-vars.js")
+                path.join("docs/rules/no-unused-vars.md"),
+                path.join("lib/rules/no-unused-vars.js"),
+                path.join("tests/lib/rules/no-unused-vars.js")
             ];
 
             assert.file(expected);
