@@ -152,4 +152,4 @@ describe("ESLint Rule Generator", () => {
             });
         });
     });
-});
+}); // TEST
