@@ -83,5 +83,5 @@ describe("ESLint Main Generator", () => {
 
             assert.file(expected);
         });
-    }); // test
+    });
 });
