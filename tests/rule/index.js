@@ -34,7 +34,7 @@ describe("ESLint Rule Generator", () => {
                 .withOptions({ "skip-install": true });
         });
 
-        it("creates expected files", () => {
+        it("creates expected files", async () => {
             const expected = [
                 "docs/rules/no-unused-vars.md",
                 "lib/rules/no-unused-vars.js",
