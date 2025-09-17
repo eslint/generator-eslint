@@ -23,7 +23,7 @@
   ],
   "repository": "eslint/generator-eslint",
   "scripts": {
-    "lint": "npm run lint:js && npm run lint:docs",
+    "lint": "npm run lint:docs && npm run lint:js",
     "lint:docs": "markdownlint \"**/*.md\"",
     "lint:js": "eslint",
     "test": "mocha --recursive tests"
