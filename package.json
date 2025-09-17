@@ -26,7 +26,7 @@
     "lint": "npm-run-all --continue-on-error --aggregate-output --parallel lint:*",
     "lint:docs": "markdownlint \"**/*.md\"",
     "lint:js": "eslint .",
-    "test": "mocha tests/**/*.test.js"
+    "test": "mocha \"tests/**/*.test.js\""
   },
   "dependencies": {
     "yeoman-generator": "^7.5.1"
