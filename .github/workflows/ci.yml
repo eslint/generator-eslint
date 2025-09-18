@@ -23,7 +23,6 @@ jobs:
   test:
     name: Test
     strategy:
-      fail-fast: false
       matrix:
         os: [ubuntu-latest]
         # Please avoid setting the Node.js version to "18.18.0"
