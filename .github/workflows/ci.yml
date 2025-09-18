@@ -25,7 +25,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [24.x, 22.x, 20.x, 18.x, "18.18.0"]
+        # Please avoid setting the Node.js version to "18.18.0"
+        # https://github.com/eslint/generator-eslint/pull/223
+        node: [24.x, 22.x, 20.x, 18.x, "18.18.1"]
         include:
         - os: windows-latest
           node: "lts/*"
