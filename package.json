@@ -26,7 +26,7 @@
     "lint": "npm run lint:docs && npm run lint:js",
     "lint:docs": "markdownlint \"**/*.md\"",
     "lint:js": "eslint",
-    "test": "mocha --recursive tests"
+    "test": "mocha \"tests/**/*.test.js\""
   },
   "dependencies": {
     "yeoman-generator": "^7.5.1"
