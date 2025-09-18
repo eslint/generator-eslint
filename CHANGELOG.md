@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/eslint/generator-eslint/compare/v5.2.0...v5.2.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* remove deprecated `type` from generated tests ([#212](https://github.com/eslint/generator-eslint/issues/212)) ([d41922b](https://github.com/eslint/generator-eslint/commit/d41922bc6673229a3bb439045b7db3d1e5d5f601))
+
 ## [5.2.0](https://github.com/eslint/generator-eslint/compare/v5.1.3...v5.2.0) (2025-07-21)
 
 
