@@ -4,3 +4,6 @@ npm-debug.log
 .eslint-release-info.json
 /.vscode/
 *.code-workspace
+
+# Automatically generated files by GitHub Actions workflow
+tools/update-readme.js
