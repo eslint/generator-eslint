@@ -16,13 +16,13 @@ export default defineConfig([
         plugins: {
             n: pluginNode,
         },
-        extends: ["n/mixed-esm-and-cjs"],
+        extends: ["n/flat/mixed-esm-and-cjs"],
     },
     {
         name: "eslint/eslint-plugin",
         plugins: {
             "eslint-plugin": eslintPlugin,
         },
-        extends: ["eslint-plugin/recommended"],
+        extends: ["eslint-plugin/flat/recommended"],
     }
 ]);
