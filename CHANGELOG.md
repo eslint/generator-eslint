@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.2](https://github.com/eslint/generator-eslint/compare/v5.2.1...v5.2.2) (2025-10-07)
+
+
+### Bug Fixes
+
+* eslint config error when using defineConfig ([#228](https://github.com/eslint/generator-eslint/issues/228)) ([d13113e](https://github.com/eslint/generator-eslint/commit/d13113e940eecf7ec146f743f8fb4488b9f64bf2))
+
 ## [5.2.1](https://github.com/eslint/generator-eslint/compare/v5.2.0...v5.2.1) (2025-09-18)
 
 
