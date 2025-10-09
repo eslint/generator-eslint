@@ -37,9 +37,7 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Publish to npm
-        run: |
-            npm install
-            npm publish --provenance
+        run: npm publish --provenance
         if: ${{ steps.release.outputs.release_created }}
 
       - run: 'npx @humanwhocodes/tweet "generator-eslint ${{ steps.release.outputs.tag_name }} has been released: ${{ steps.release.outputs.html_url }}"'
