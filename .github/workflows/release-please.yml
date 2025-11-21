@@ -12,18 +12,8 @@ jobs:
       pull-requests: write
       id-token: write
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         id: release
-        with:
-          release-type: node
-          package-name: generator-eslint
-          pull-request-title-pattern: 'chore: release${component} ${version}'
-          changelog-types: >
-            [
-              { "type": "feat", "section": "Features", "hidden": false },
-              { "type": "fix", "section": "Bug Fixes", "hidden": false },
-              { "type": "perf", "section": "Performance Improvements", "hidden": false }
-            ]
 
       - uses: actions/checkout@v5
         if: ${{ steps.release.outputs.release_created }}
