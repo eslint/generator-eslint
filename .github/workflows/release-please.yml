@@ -25,7 +25,7 @@ jobs:
               { "type": "perf", "section": "Performance Improvements", "hidden": false }
             ]
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         if: ${{ steps.release.outputs.release_created }}
 
       - uses: actions/setup-node@v6
