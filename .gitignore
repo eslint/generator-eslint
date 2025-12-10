@@ -5,5 +5,8 @@ npm-debug.log
 /.vscode/
 *.code-workspace
 
+# Output of 'npm pack'
+*.tgz
+
 # Automatically generated files by GitHub Actions workflow
 /.shared-workflows
