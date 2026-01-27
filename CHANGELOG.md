@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/eslint/generator-eslint/compare/generator-eslint-v5.2.2...generator-eslint-v6.0.0) (2026-01-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Require Node.js ^20.19.0 || ^22.13.0 || >=24 ([#232](https://github.com/eslint/generator-eslint/issues/232))
+
+### Features
+
+* Require Node.js ^20.19.0 || ^22.13.0 || &gt;=24 ([#232](https://github.com/eslint/generator-eslint/issues/232)) ([953232b](https://github.com/eslint/generator-eslint/commit/953232bc13557f45f5b6f924c954508256577ec1))
+
 ## [5.2.2](https://github.com/eslint/generator-eslint/compare/v5.2.1...v5.2.2) (2025-10-07)
 
 
