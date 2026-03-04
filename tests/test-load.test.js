@@ -11,13 +11,13 @@ import assert from "node:assert";
  * @returns {Promise<*>} The imported module.
  */
 async function importFresh(modulePath) {
-    return import(`${modulePath}?x=${new Date()}`);
+	return import(`${modulePath}?x=${new Date()}`);
 }
 
 describe("eslint generator", () => {
-    it("can be imported without blowing up", () => {
-        const app = importFresh("../rule");
+	it("can be imported without blowing up", () => {
+		const app = importFresh("../rule");
 
-        assert.ok(app);
-    });
+		assert.ok(app);
+	});
 });
