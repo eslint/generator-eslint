@@ -23,6 +23,8 @@
   ],
   "repository": "eslint/generator-eslint",
   "scripts": {
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "lint": "npm run lint:docs && npm run lint:js",
     "lint:docs": "markdownlint \"**/*.md\"",
     "lint:js": "eslint",
@@ -37,6 +39,7 @@
     "globals": "^17.0.0",
     "markdownlint-cli": "^0.47.0",
     "mocha": "^11.0.0",
+    "prettier": "3.8.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^11.0.0"
   },

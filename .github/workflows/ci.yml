@@ -20,6 +20,19 @@ jobs:
         run: npm install
       - name: Lint files
         run: npm run lint
+  format:
+    name: File Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+      - name: Install dependencies
+        run: npm install
+      - name: Prettier Check
+        run: npm run fmt:check
   test:
     name: Test
     strategy:
