@@ -34,8 +34,8 @@
     "yeoman-generator": "^8.0.0"
   },
   "devDependencies": {
-    "eslint": "^9.35.0",
-    "eslint-config-eslint": "^13.0.0",
+    "eslint": "^10.0.0",
+    "eslint-config-eslint": "^14.0.0",
     "globals": "^17.0.0",
     "markdownlint-cli": "^0.47.0",
     "mocha": "^11.0.0",
