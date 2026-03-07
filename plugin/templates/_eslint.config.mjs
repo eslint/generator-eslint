@@ -23,6 +23,6 @@ export default defineConfig([
         plugins: {
             "eslint-plugin": eslintPlugin,
         },
-        extends: ["eslint-plugin/flat/recommended"],
+        extends: ["eslint-plugin/recommended"],
     }
 ]);
