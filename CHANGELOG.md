@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.1.0](https://github.com/eslint/generator-eslint/compare/generator-eslint-v6.0.0...generator-eslint-v6.1.0) (2026-03-09)
+
+
+### Features
+
+* upgrade eslint-plugin-eslint-plugin v7.3.2 ([#253](https://github.com/eslint/generator-eslint/issues/253)) ([57ec99d](https://github.com/eslint/generator-eslint/commit/57ec99d584a87410795fa37403d03af2c683f9d4))
+
+
+### Bug Fixes
+
+* update dependency yeoman-generator to v8 ([#254](https://github.com/eslint/generator-eslint/issues/254)) ([97a09dd](https://github.com/eslint/generator-eslint/commit/97a09dd8b7fe7ccf64f9dc8e068dfd9445405660))
+
 ## [6.0.0](https://github.com/eslint/generator-eslint/compare/generator-eslint-v5.2.2...generator-eslint-v6.0.0) (2026-01-27)
 
 
