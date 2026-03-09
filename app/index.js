@@ -30,21 +30,27 @@ const PLUGIN_GENERATOR_PATH = path.join(__dirname, "..", "plugin", "index.js");
  * Represents a generator for creating ESLint plugins/rules.
  */
 export default class extends Generator {
-    async prompting() {
-        const answers = await this.prompt({
-            type: "list",
-            name: "outputType",
-            message: "Do you want to generate a rule or a plugin?",
-            choices: ["Rule", "Plugin"],
-            default: "Rule"
-        });
+	async prompting() {
+		const answers = await this.prompt({
+			type: "list",
+			name: "outputType",
+			message: "Do you want to generate a rule or a plugin?",
+			choices: ["Rule", "Plugin"],
+			default: "Rule",
+		});
 
-        if (answers.outputType === "Rule") {
-            this.composeWith({ Generator: RuleGenerator, path: RULE_GENERATOR_PATH });
-        } else if (answers.outputType === "Plugin") {
-            this.composeWith({ Generator: PluginGenerator, path: PLUGIN_GENERATOR_PATH });
-        } else {
-            throw new Error("Unhandled generator type.");
-        }
-    }
+		if (answers.outputType === "Rule") {
+			this.composeWith({
+				Generator: RuleGenerator,
+				path: RULE_GENERATOR_PATH,
+			});
+		} else if (answers.outputType === "Plugin") {
+			this.composeWith({
+				Generator: PluginGenerator,
+				path: PLUGIN_GENERATOR_PATH,
+			});
+		} else {
+			throw new Error("Unhandled generator type.");
+		}
+	}
 }
