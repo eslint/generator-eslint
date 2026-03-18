@@ -7,41 +7,29 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import helpers from "yeoman-test";
-import assert from "yeoman-assert";
+import helpers, { result } from "yeoman-test";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-/* eslint-disable no-underscore-dangle -- cjs convention */
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const APP_GENERATOR_PATH = path.join(__dirname, "..", "..", "app", "index.js");
-const RULE_GENERATOR_PATH = path.join(
-	__dirname,
-	"..",
-	"..",
-	"rule",
-	"index.js",
+const APP_GENERATOR_PATH = fileURLToPath(
+	new URL("../../app/index.js", import.meta.url),
 );
-const PLUGIN_GENERATOR_PATH = path.join(
-	__dirname,
-	"..",
-	"..",
-	"plugin",
-	"index.js",
+const RULE_GENERATOR_PATH = fileURLToPath(
+	new URL("../../rule/index.js", import.meta.url),
 );
-/* eslint-enable no-underscore-dangle -- cjs convention */
+const PLUGIN_GENERATOR_PATH = fileURLToPath(
+	new URL("../../plugin/index.js", import.meta.url),
+);
 
 describe("ESLint Main Generator", () => {
 	describe("User answers with Plugin", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(APP_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					outputType: "Plugin",
 					userName: "John Doe",
 					pluginId: "foo-bar",
@@ -62,7 +50,7 @@ describe("ESLint Main Generator", () => {
 				"eslint.config.mjs",
 			];
 
-			assert.file(expected);
+			result.assertFile(expected);
 		});
 	});
 
@@ -70,7 +58,7 @@ describe("ESLint Main Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(APP_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					outputType: "Rule",
 					userName: "John Doe",
 					ruleId: "no-unused-vars",
@@ -90,7 +78,7 @@ describe("ESLint Main Generator", () => {
 				"tests/lib/rules/no-unused-vars.js",
 			];
 
-			assert.file(expected);
+			result.assertFile(expected);
 		});
 	});
 });
