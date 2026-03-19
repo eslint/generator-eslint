@@ -7,9 +7,11 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import helpers, { result } from "yeoman-test";
-import assert from "yeoman-assert"; // TODO: Remove
+import assert from "node:assert";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import helpers, { result } from "yeoman-test";
 
 //------------------------------------------------------------------------------
 // Tests
@@ -107,15 +109,11 @@ describe("ESLint Plugin Generator", () => {
 		});
 
 		it("creates expected files", () => {
-			const expected = [
-				"lib/rules",
-				"tests/lib/rules",
-				"lib/index.js",
-				"package.json",
-				"README.md",
-			];
+			const expected = ["lib/index.js", "package.json", "README.md"];
 
-			assert.file(expected);
+			assert.ok(existsSync(join(result.cwd, "lib", "rules")));
+			assert.ok(existsSync(join(result.cwd, "tests", "lib", "rules")));
+			result.assertFile(expected);
 		});
 
 		it("has correct lib/index.js", () => {
@@ -152,15 +150,13 @@ describe("ESLint Plugin Generator", () => {
 		});
 
 		it("creates expected files", () => {
-			const expected = [
-				"lib/processors",
-				"tests/lib/processors",
-				"lib/index.js",
-				"package.json",
-				"README.md",
-			];
+			const expected = ["lib/index.js", "package.json", "README.md"];
 
-			assert.file(expected);
+			assert.ok(existsSync(join(result.cwd, "lib", "processors")));
+			assert.ok(
+				existsSync(join(result.cwd, "tests", "lib", "processors")),
+			);
+			result.assertFile(expected);
 		});
 
 		it("has correct lib/index.js", () => {

@@ -40,8 +40,7 @@
     "markdownlint-cli": "^0.48.0",
     "mocha": "^11.0.0",
     "prettier": "3.8.1",
-    "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^11.0.0"
+    "yeoman-test": "^11.3.1"
   },
   "peerDependencies": {
     "yo": ">=4.0.0"
