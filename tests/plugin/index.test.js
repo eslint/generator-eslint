@@ -7,23 +7,18 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import helpers from "yeoman-test";
-import assert from "yeoman-assert";
+import assert from "node:assert";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
+import helpers, { result } from "yeoman-test";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle -- cjs convention
-
-const PLUGIN_GENERATOR_PATH = path.join(
-	__dirname,
-	"..",
-	"..",
-	"plugin",
-	"index.js",
+const PLUGIN_GENERATOR_PATH = fileURLToPath(
+	new URL("../../plugin/index.js", import.meta.url),
 );
 
 describe("ESLint Plugin Generator", () => {
@@ -31,7 +26,7 @@ describe("ESLint Plugin Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(PLUGIN_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					userName: "John Doe",
 					pluginId: "foo-bar",
 					desc: "my description",
@@ -49,11 +44,11 @@ describe("ESLint Plugin Generator", () => {
 				"eslint.config.mjs",
 			];
 
-			assert.file(expected);
+			result.assertFile(expected);
 		});
 
 		it("has correct package.json", () => {
-			assert.jsonFileContent("package.json", {
+			result.assertJsonFileContent("package.json", {
 				name: "eslint-plugin-foo-bar",
 				author: "John Doe",
 				description: "my description",
@@ -61,38 +56,41 @@ describe("ESLint Plugin Generator", () => {
 		});
 
 		it("has correct README.md", () => {
-			assert.fileContent("README.md", "# eslint-plugin-foo-bar");
-			assert.fileContent(
+			result.assertFileContent("README.md", "# eslint-plugin-foo-bar");
+			result.assertFileContent(
 				"README.md",
 				"Next, install `eslint-plugin-foo-bar`:",
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"README.md",
 				"npm install eslint-plugin-foo-bar --save-dev",
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"README.md",
 				"add `foo-bar` to the `plugins` key",
 			);
 
-			assert.noFileContent(
+			result.assertNoFileContent(
 				"README.md",
 				"Then configure the rules you want to use under the `rules` key.",
 			);
 		});
 
 		it("has correct lib/index.js", () => {
-			assert.noFileContent(
+			result.assertNoFileContent(
 				"lib/index.js",
 				"module.exports.processors = {",
 			);
-			assert.noFileContent(
+			result.assertNoFileContent(
 				"lib/index.js",
 				'module.exports.rules = requireIndex(__dirname + "/rules");',
 			);
 
-			assert.fileContent("lib/index.js", "@fileoverview my description");
-			assert.fileContent("lib/index.js", "@author John Doe");
+			result.assertFileContent(
+				"lib/index.js",
+				"@fileoverview my description",
+			);
+			result.assertFileContent("lib/index.js", "@author John Doe");
 		});
 	});
 
@@ -100,7 +98,7 @@ describe("ESLint Plugin Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(PLUGIN_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					userName: "John Doe",
 					pluginId: "foo-bar",
 					desc: "my description",
@@ -111,30 +109,29 @@ describe("ESLint Plugin Generator", () => {
 		});
 
 		it("creates expected files", () => {
-			const expected = [
-				"lib/rules",
-				"tests/lib/rules",
-				"lib/index.js",
-				"package.json",
-				"README.md",
-			];
+			const expected = ["lib/index.js", "package.json", "README.md"];
 
-			assert.file(expected);
+			assert.ok(existsSync(join(result.cwd, "lib", "rules")));
+			assert.ok(existsSync(join(result.cwd, "tests", "lib", "rules")));
+			result.assertFile(expected);
 		});
 
 		it("has correct lib/index.js", () => {
-			assert.fileContent(
+			result.assertFileContent(
 				"lib/index.js",
 				'module.exports.rules = requireIndex(__dirname + "/rules");',
 			);
-			assert.noFileContent(
+			result.assertNoFileContent(
 				"lib/index.js",
 				"module.exports.processors = {",
 			);
 		});
 
 		it("has correct README.md", () => {
-			assert.fileContent("README.md", '"foo-bar/rule-name": "warn"');
+			result.assertFileContent(
+				"README.md",
+				'"foo-bar/rule-name": "warn"',
+			);
 		});
 	});
 
@@ -142,7 +139,7 @@ describe("ESLint Plugin Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(PLUGIN_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					userName: "John Doe",
 					pluginId: "foo-bar",
 					desc: "my description",
@@ -153,27 +150,28 @@ describe("ESLint Plugin Generator", () => {
 		});
 
 		it("creates expected files", () => {
-			const expected = [
-				"lib/processors",
-				"tests/lib/processors",
-				"lib/index.js",
-				"package.json",
-				"README.md",
-			];
+			const expected = ["lib/index.js", "package.json", "README.md"];
 
-			assert.file(expected);
+			assert.ok(existsSync(join(result.cwd, "lib", "processors")));
+			assert.ok(
+				existsSync(join(result.cwd, "tests", "lib", "processors")),
+			);
+			result.assertFile(expected);
 		});
 
 		it("has correct lib/index.js", () => {
-			assert.fileContent("lib/index.js", "module.exports.processors = {");
-			assert.noFileContent(
+			result.assertFileContent(
+				"lib/index.js",
+				"module.exports.processors = {",
+			);
+			result.assertNoFileContent(
 				"lib/index.js",
 				'module.exports.rules = requireIndex(__dirname + "/rules");',
 			);
 		});
 
 		it("has correct README.md", () => {
-			assert.noFileContent("README.md", '"foo-bar/rule-name": 2');
+			result.assertNoFileContent("README.md", '"foo-bar/rule-name": 2');
 		});
 	});
 
@@ -182,7 +180,7 @@ describe("ESLint Plugin Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(PLUGIN_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						pluginId: "eslint-plugin-foo-bar",
 						desc: "my description",
@@ -193,7 +191,7 @@ describe("ESLint Plugin Generator", () => {
 			});
 
 			it("has correct package.json", () => {
-				assert.jsonFileContent("package.json", {
+				result.assertJsonFileContent("package.json", {
 					name: "eslint-plugin-foo-bar",
 				});
 			});
@@ -203,7 +201,7 @@ describe("ESLint Plugin Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(PLUGIN_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						pluginId: "foo-bar",
 						desc: 'My "foo"',
@@ -214,7 +212,7 @@ describe("ESLint Plugin Generator", () => {
 			});
 
 			it("has correct package.json", () => {
-				assert.jsonFileContent("package.json", {
+				result.assertJsonFileContent("package.json", {
 					description: 'My "foo"',
 				});
 			});
@@ -224,7 +222,7 @@ describe("ESLint Plugin Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(PLUGIN_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: 'Kevin "platinumazure" Partington',
 						pluginId: "foo-bar",
 						desc: "my description",
@@ -235,7 +233,7 @@ describe("ESLint Plugin Generator", () => {
 			});
 
 			it("has correct package.json", () => {
-				assert.jsonFileContent("package.json", {
+				result.assertJsonFileContent("package.json", {
 					author: 'Kevin "platinumazure" Partington',
 				});
 			});
@@ -245,7 +243,7 @@ describe("ESLint Plugin Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(PLUGIN_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						pluginId: "foo-bar",
 						desc: "My 'foo'",
@@ -256,7 +254,7 @@ describe("ESLint Plugin Generator", () => {
 			});
 
 			it("has correct package.json", () => {
-				assert.jsonFileContent("package.json", {
+				result.assertJsonFileContent("package.json", {
 					description: "My 'foo'",
 				});
 			});
@@ -266,7 +264,7 @@ describe("ESLint Plugin Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(PLUGIN_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "Kevin 'platinumazure' Partington",
 						pluginId: "foo-bar",
 						desc: "my description",
@@ -277,7 +275,7 @@ describe("ESLint Plugin Generator", () => {
 			});
 
 			it("has correct package.json", () => {
-				assert.jsonFileContent("package.json", {
+				result.assertJsonFileContent("package.json", {
 					author: "Kevin 'platinumazure' Partington",
 				});
 			});

@@ -7,23 +7,15 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import helpers from "yeoman-test";
-import assert from "yeoman-assert";
+import helpers, { result } from "yeoman-test";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url)); // eslint-disable-line no-underscore-dangle -- cjs convention
-
-const RULE_GENERATOR_PATH = path.join(
-	__dirname,
-	"..",
-	"..",
-	"rule",
-	"index.js",
+const RULE_GENERATOR_PATH = fileURLToPath(
+	new URL("../../rule/index.js", import.meta.url),
 );
 
 describe("ESLint Rule Generator", () => {
@@ -31,7 +23,7 @@ describe("ESLint Rule Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(RULE_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					userName: "John Doe",
 					ruleId: "no-unused-vars",
 					desc: "Don't include unused variables.",
@@ -48,41 +40,41 @@ describe("ESLint Rule Generator", () => {
 				"tests/lib/rules/no-unused-vars.js",
 			];
 
-			assert.file(expected);
+			result.assertFile(expected);
 		});
 
 		it("has correct rule implementation file contents", () => {
-			assert.fileContent(
+			result.assertFileContent(
 				"lib/rules/no-unused-vars.js",
 				'description: "Don\'t include unused variables."',
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"lib/rules/no-unused-vars.js",
 				"@fileoverview Don't include unused variables.",
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"lib/rules/no-unused-vars.js",
 				"@author John Doe",
 			);
 		});
 
 		it("has correct rule doc file contents", () => {
-			assert.fileContent(
+			result.assertFileContent(
 				"docs/rules/no-unused-vars.md",
 				"# Don&#39;t include unused variables. (`no-unused-vars`)",
 			);
 		});
 
 		it("has correct rule test file contents", () => {
-			assert.fileContent(
+			result.assertFileContent(
 				"tests/lib/rules/no-unused-vars.js",
 				'RuleTester = require("eslint").RuleTester;',
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"tests/lib/rules/no-unused-vars.js",
 				'ruleTester.run("no-unused-vars", rule, {',
 			);
-			assert.fileContent(
+			result.assertFileContent(
 				"tests/lib/rules/no-unused-vars.js",
 				'code: "x;"',
 			);
@@ -93,7 +85,7 @@ describe("ESLint Rule Generator", () => {
 		beforeEach(async () => {
 			await helpers
 				.run(RULE_GENERATOR_PATH)
-				.withPrompts({
+				.withAnswers({
 					userName: "John Doe",
 					ruleId: "no-unused-vars",
 					desc: "Don't include unused variables.",
@@ -104,7 +96,7 @@ describe("ESLint Rule Generator", () => {
 		});
 
 		it("has correct rule test file contents", () => {
-			assert.fileContent(
+			result.assertFileContent(
 				"tests/lib/rules/no-unused-vars.js",
 				'RuleTester = require("../../../lib/rule-tester");',
 			);
@@ -116,7 +108,7 @@ describe("ESLint Rule Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(RULE_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						ruleId: "no-unused-vars",
 						desc: 'My "foo"',
@@ -127,7 +119,7 @@ describe("ESLint Rule Generator", () => {
 			});
 
 			it("has correct description", () => {
-				assert.fileContent(
+				result.assertFileContent(
 					"lib/rules/no-unused-vars.js",
 					'description: "My \\"foo\\""',
 				);
@@ -138,7 +130,7 @@ describe("ESLint Rule Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(RULE_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						ruleId: "no-unused-vars",
 						desc: "Don't include unused variables.",
@@ -149,7 +141,7 @@ describe("ESLint Rule Generator", () => {
 			});
 
 			it("has correct code snippet", () => {
-				assert.fileContent(
+				result.assertFileContent(
 					"tests/lib/rules/no-unused-vars.js",
 					'code: "var x = \\"foo\\";"',
 				);
@@ -160,7 +152,7 @@ describe("ESLint Rule Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(RULE_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						ruleId: "no-unused-vars",
 						desc: "My 'foo'",
@@ -171,7 +163,7 @@ describe("ESLint Rule Generator", () => {
 			});
 
 			it("has correct description", () => {
-				assert.fileContent(
+				result.assertFileContent(
 					"lib/rules/no-unused-vars.js",
 					"description: \"My 'foo'\"",
 				);
@@ -182,7 +174,7 @@ describe("ESLint Rule Generator", () => {
 			beforeEach(async () => {
 				await helpers
 					.run(RULE_GENERATOR_PATH)
-					.withPrompts({
+					.withAnswers({
 						userName: "John Doe",
 						ruleId: "no-unused-vars",
 						desc: "Don't include unused variables.",
@@ -193,7 +185,7 @@ describe("ESLint Rule Generator", () => {
 			});
 
 			it("has correct code snippet", () => {
-				assert.fileContent(
+				result.assertFileContent(
 					"tests/lib/rules/no-unused-vars.js",
 					"code: \"var x = 'foo';\"",
 				);
