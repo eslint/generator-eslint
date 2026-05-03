@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.1](https://github.com/eslint/generator-eslint/compare/generator-eslint-v6.1.0...generator-eslint-v6.1.1) (2026-05-03)
+
+
+### Bug Fixes
+
+* use ESLint v10 and latest `npm-run-all2` in template ([#260](https://github.com/eslint/generator-eslint/issues/260)) ([0be26d5](https://github.com/eslint/generator-eslint/commit/0be26d5f54b72b5a89d7054e9d5605e9d0e56370))
+
 ## [6.1.0](https://github.com/eslint/generator-eslint/compare/generator-eslint-v6.0.0...generator-eslint-v6.1.0) (2026-03-09)
 
 
