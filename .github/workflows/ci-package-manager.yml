@@ -13,4 +13,4 @@ jobs:
     ci-package-manager:
         uses: eslint/workflows/.github/workflows/ci-package-manager.yml@fix/ci-failure
         with:
-            pnpm_approve_builds: yo
+            pnpm_allow_build: yo
