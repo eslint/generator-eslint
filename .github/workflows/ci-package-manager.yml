@@ -11,6 +11,6 @@ on:
 
 jobs:
     ci-package-manager:
-        uses: eslint/workflows/.github/workflows/ci-package-manager.yml@fix/ci-failure
+        uses: eslint/workflows/.github/workflows/ci-package-manager.yml@main
         with:
             pnpm_allow_build_args: yo
