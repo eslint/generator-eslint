@@ -38,7 +38,7 @@
     "eslint-config-eslint": "^14.0.0",
     "globals": "^17.0.0",
     "markdownlint-cli": "^0.48.0",
-    "mocha": "^11.0.0",
+    "mocha": "^12.0.0",
     "prettier": "3.8.4",
     "yeoman-test": "^11.3.1"
   },
